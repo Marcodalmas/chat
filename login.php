@@ -26,7 +26,7 @@
 		}
 		else{
 			echo '<div class="alert alert-danger">
-	  			<strong>Errore!</strong> utente o password errata
+	  			<strong>Errore!!</strong> utente o password errata
 				</div>';
 		}
 
