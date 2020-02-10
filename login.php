@@ -139,7 +139,7 @@
 	  <form method= 'post' action="login.php" class="container">
 	    <h1>Login</h1>
 
-	    <label for="nickname"><b>Nicknameeeeee</b></label>
+	    <label for="nickname"><b>Nickname</b></label>
 	    <input type="text" placeholder="Enter nickname" name="nick" required>
 
 	    <label for="psw"><b>Password</b></label>
