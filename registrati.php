@@ -35,7 +35,7 @@
 		  			<strong>Errore!</strong> nickname già registrato
 					</div>';
 		}
-		else if (!isset($pass)) {
+		else if (!isset($pass)|| !($pass === $_REQUEST['pass1'] )) {
 			echo '<div class="alert alert-danger">
 		  			<strong>Errore!</strong> inserire una password valida
 					</div>';
@@ -154,7 +154,7 @@
 
 	<title>Registrati</title>
 </head>
-<body>
+<body onload="samepwd()">
 
   	<div class="bg-img">
 	  <form method= 'post' action="registrati.php" class="container" enctype="multipart/form-data">
@@ -167,7 +167,11 @@
 	    <input type="text" placeholder="Enter Nickname" name="nick" required>
 
 	    <label for="psw"><b>Password</b></label>
-	    <input type="password" placeholder="Enter Password" name="pass" required>
+	    <input type="password" id="pwd" placeholder="Enter Password" name="pass" required>
+	    
+	    <label for="psw"><b>Conferma Password</b></label>
+	    <input type="password" id="rpwd" placeholder="Enter Password" name="pass1" required>
+	   
 
 		<label for="frasetta"><b>Status</b></label>
 	    <input type="text" placeholder="Enter Status" name="frasetta">
@@ -185,12 +189,12 @@
 			return document.getElementById('pwd').value === document.getElementById('rpwd').value
 		}
 		function colore(){
-			if (sampepwd())
-				return green;
+			if (samepwd()== true)
+				document.getElementById('rpwd').style="border:2px solid green";
 			else
-				return red;
+				document.getElementById('rpwd').style="border:2px solid red";
 		}
-		setInterval('samepwd()',100);
+		setInterval('colore()',100);
 
 	</script>
 
