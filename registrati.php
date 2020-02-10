@@ -180,5 +180,21 @@
 	</div>
 
 
+<script type="text/javascript">
+		function samepwd(){
+			return document.getElementById('pwd').value === document.getElementById('rpwd').value
+		}
+		function colore(){
+			if (sampepwd())
+				return green;
+			else
+				return red;
+		}
+		setInterval('samepwd()',100);
+
+	</script>
+
+
+
 </body>
 </html>
