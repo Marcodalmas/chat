@@ -1,12 +1,7 @@
 <?php 
 
 	include_once 'utils.php';
-
-	try {
-		$pdo= new pdo("mysql:host=localhost; dbname=chat",'root','');
-	} catch (pdoException $e) {
-		echo"fail";
-	}
+	include_once 'dbConnection.php';
 
 	session_start();
 	$id = $_SESSION['id'];

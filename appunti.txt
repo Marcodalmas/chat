@@ -1,0 +1,7 @@
+// select dei post degli amici
+SELECT *
+FROM post as p 
+WHERE p.uid IN (SELECT a.uid_a
+                FROM amicizie AS a
+                JOIN utenti AS u ON a.uid_a = u.uid
+                WHERE a.uid_da = 6)

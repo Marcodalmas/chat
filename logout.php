@@ -1,11 +1,11 @@
-<?php 
-	session_start();
-	$_Session=[];
-	session_destroy();
-	header('Location: login.php');
-	exit();
+<?php
 
+    session_start();
 
+    $_SESSION = [];
 
+    session_destroy();
 
-?>
+    header('Location: login.php');
+
+    exit();

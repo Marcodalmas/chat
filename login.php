@@ -16,26 +16,30 @@
 		if ($log != 0) {
 
 			session_start();
-			
-			$_SESSION['id']=id_from_nick($_REQUEST['nick'],$pdo);
+			$id = id_from_nick($_REQUEST['nick'],$pdo);
+			$_SESSION['id']= $id;
 			$_SESSION['nick']=$_REQUEST['nick'];
 			$_SESSION['frasetta']=$log['frasetta'];
+			if($log['foto'] == 1){
+			    $_SESSION['foto']="foto/$id.png";
+			}
+			else
+			    $_SESSION['foto']="foto/0.png";
 		
 			header('Location: home.php');
 			exit();
 		}
 		else{
 			echo '<div class="alert alert-danger">
-	  			<strong>Errore!!</strong> utente o password errata
+	  			<strong>Errore!</strong> utente o password errata
 				</div>';
 		}
 
-		if (isset($_REQUEST['successo'])) {
-			if ($_REQUEST['successo']==1) {
-				echo '<div class="alert alert-success">
-  					<strong>Utente registrato!</strong> fai il login e inizia a chattare
-					</div>';
-			}
+		
+	}
+	if(isset($_REQUEST['successo'])) {
+		if($_REQUEST['successo']==1) {
+			echo '<script>window.alert("ACCOUNT CREATO CON SUCCESSO!");</script>';
 		}
 	}
 

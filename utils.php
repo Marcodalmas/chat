@@ -45,7 +45,7 @@
 
 	
 	function login($nick, $pass, $pdo){
-		$sql="SELECT u.frasetta
+		$sql="SELECT u.frasetta, u.foto
 			  FROM utenti as u
 			  where u.password_hash=? and u.nickname = ?";
 

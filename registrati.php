@@ -1,14 +1,10 @@
 <?php 
 	
 	include_once 'utils.php';
+	include_once 'dbConnection.php';
+
 	$email_check='';
 	$nick_check='';
-
-	try {
-		$pdo= new pdo("mysql:host=localhost; dbname=chat",'root','');
-	} catch (pdoException $e) {
-		echo"fail";
-	}
 	
 	if (isset($_REQUEST['email'])) {
 		$email = $_REQUEST['email'];
@@ -22,9 +18,8 @@
 		$pass = $_REQUEST['pass'];
 	}
 
-	if (isset($pass)&& isset($nick_check) && isset($email_check)) {
-		
-	
+	if (isset($pass) && isset($nick_check) && isset($email_check)) {
+			
 		if ($email_check==1 && $nick_check==1) {
 			echo '<div class="alert alert-danger">
 		  			<strong>Errore!</strong> email e password già registrati
@@ -40,22 +35,40 @@
 		  			<strong>Errore!</strong> nickname già registrato
 					</div>';
 		}
-		elseif (!isset($pass)) {
+		else if (!isset($pass)) {
 			echo '<div class="alert alert-danger">
 		  			<strong>Errore!</strong> inserire una password valida
 					</div>';
 		}
 		else{
-			
-			$sql=" insert INTO utenti (email,nickname,password_hash)
-						VALUES (?,?,?) ";
+			$foto=0;
+            $frasetta = $_REQUEST['frasetta']??'';
 
-			$stmt = $pdo -> prepare($sql);
+			if($_FILES['foto']['size'] != 0)
+                $foto=1;
+            
+			$sql="INSERT INTO utenti (email,nickname,password_hash,frasetta,foto)
+				  VALUES (?,?,?,?,?) ";
 
-			$stmt -> execute([$email,$nick,$pass]);
+			$stmt = $pdo->prepare($sql);
 
+			$stmt->execute([$email,$nick,$pass,$frasetta,$foto]);
 
-			header('Location: login.php?successo=2');
+            //prendere l'id per rinominare la foto
+
+            if($foto == 1){
+                $id = '';
+                $query = "SELECT uid FROM utenti WHERE nickname = '$nick'";
+                $stmt2 = $pdo->query($query);
+                foreach($stmt2 as $row){$id = $row['uid'];}
+                $_FILES['foto']['name'] = $id.'.png';
+
+                $target_Path = "foto/";
+                $target_Path = $target_Path.basename($_FILES['foto']['name']);
+                move_uploaded_file( $_FILES['foto']['tmp_name'], $target_Path );
+            }
+            
+			header('Location: login.php?successo=1');
 				exit();
 		}
 	}
@@ -105,7 +118,7 @@
 		}
 
 		/* Full-width input fields */
-		input[type=text], input[type=password] {
+		input {
 		  width: 100%;
 		  padding: 15px;
 		  margin: 5px 0 22px 0;
@@ -113,7 +126,7 @@
 		  background: #f1f1f1;
 		}
 
-		input[type=text]:focus, input[type=password]:focus {
+		input:focus {
 		  background-color: #ddd;
 		  outline: none;
 		}
@@ -139,33 +152,28 @@
 
 	</style>
 
-	<title>registrati</title>
+	<title>Registrati</title>
 </head>
 <body>
 
-	<!--<form method= 'post' action="registrati.php">
-		email:<br>
-		<input type="email" name="email" ><br>
-		nickname:<br>
- 		<input type="text" name="nick"><br>
- 		password:<br>
-  		<input type="password" name="pass" minlength="5"><br>
-  		<input type="submit" value="Submit">
-  	</form>-->
-
-
   	<div class="bg-img">
-	  <form method= 'post' action="registrati.php" class="container">
+	  <form method= 'post' action="registrati.php" class="container" enctype="multipart/form-data">
 	    <h1>Registrati</h1>
 
 	    <label for="email"><b>Email</b></label>
 	    <input type="email" placeholder="Enter Email" name="email" required>
 
 	    <label for="nickname"><b>Nickname</b></label>
-	    <input type="text" placeholder="Enter Email" name="nick" required>
+	    <input type="text" placeholder="Enter Nickname" name="nick" required>
 
 	    <label for="psw"><b>Password</b></label>
 	    <input type="password" placeholder="Enter Password" name="pass" required>
+
+		<label for="frasetta"><b>Status</b></label>
+	    <input type="text" placeholder="Enter Status" name="frasetta">
+
+		<label for="foto"><b>Image(.png)</b></label>
+	    <input type="file" name="foto" accept="image/png">
 
 	    <button type="submit" class="btn">Registrati</button><br><br>
 	  </form>
