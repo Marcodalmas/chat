@@ -73,8 +73,8 @@
 </head>
 <body class="container pt-3">
 
-	<div class="header row m-3 p-3" id="myHeader">
-		<!-- Foto profilo
+	<div class="header row m-3 p-3" id="header">
+		<!-- header Foto profilo
 			  Nickname-->
         <?php 
         echo "<img src=\"$foto\" class=\"rounded-circle p-2 m-2\" width=\"150\" height=\"150\">";
@@ -100,14 +100,15 @@
 
 			    <button type="button" class="btn btn-danger" onclick="closeForm()">Close</button>
 			  </form>
-        	</div>
-            
-            
-    </div>
-</div>
+        	</div> 
+    	</div>
+	</div>
+
+
+
     <!-- POST -->
 
-    <div class="col" style="top: 300px">
+    <div style="top: 300spx">
 
         <?php
             $query = "SELECT *
