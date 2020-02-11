@@ -35,7 +35,7 @@
 		  			<strong>Errore!</strong> nickname già registrato
 					</div>';
 		}
-		else if (!isset($pass)|| !($pass === $_REQUEST['pass1'] )) {
+		else if (!isset($pass)|| !($pass === $_REQUEST['pass1'] ))	 {
 			echo '<div class="alert alert-danger">
 		  			<strong>Errore!</strong> inserire una password valida
 					</div>';
@@ -189,10 +189,14 @@
 			return document.getElementById('pwd').value === document.getElementById('rpwd').value
 		}
 		function colore(){
-			if (samepwd()== true)
-				document.getElementById('rpwd').style="border:2px solid green";
+			if(document.getElementById('rpwd').value != ""){
+				if (samepwd()== true)
+					document.getElementById('rpwd').style="border:2px solid green";
+				else
+					document.getElementById('rpwd').style="border:2px solid red";
+			}
 			else
-				document.getElementById('rpwd').style="border:2px solid red";
+				document.getElementById('rpwd').style="border:none";
 		}
 		setInterval('colore()',100);
 
