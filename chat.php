@@ -76,18 +76,18 @@
 		}
 		.header {
 		  width: 105%;
+		  top: 0px;
 		  padding: 10px 16px;
-		  background: #111;
+		  background: black;
 		  color: #f1f1f1;
-		   overflow-y: hidden;
+		  overflow-x: hidden;
 
 		}
 		div.scrollmenu {
 		  background-color: black;
 		  overflow: auto;
 		  white-space: nowrap;
-		  height: 11%;
-		   overflow-y: hidden;
+		   overflow-x: : hidden;
 		  
 		}
 
@@ -125,36 +125,55 @@
 <body>
 
 	<div class="split left">
-	<h2>Info(foto profilo notifiche ecc)ooooooooo</h2>
-	  <div class="btn-group-vertical centered">
-	    	<!--<?php
-				foreach ($stmt as $row) {
-					echo "<button class=\"btn-success row p-4 m-4 \" onclick=\"view($row[uid]);\" >$row[nickname]</button>";
-					
-				}
-	    	?>
-	    	-->
-	  </div>
-	</div>
-   
-	<div class="split right">
+		<div class="header">
+			<h1>search</h1>
+		</div>
 		<div class="scrollmenu">
 			<?php
 				$sql="SELECT uid, nickname
 				  	  FROM amicizie AS a
 				      JOIN utenti AS u ON a.uid_a = u.uid
-				      WHERE a.uid_da = $id";
+					  WHERE a.uid_da = $id";
 
-					$stmt = $pdo->query($sql);
-					foreach ($stmt as $row) {
-						echo "<a href=home>$row[nickname]</a>";
-					}
-			 ?>
+				$stmt = $pdo->query($sql);
+
+				echo "<div class='btn-group-vertical' style='width: 99%'>";
+
+				foreach ($stmt as $row) {
+				echo "<button type='button' class='btn btn-primary' style='background-color: black; border: 1px solid white; height: 40px;'>$row[nickname]</button><br>";
+				}
+
+				echo "</div>";
+     		?>	 
+		</div> 
+
+
+	</div>
+
+
+
+
+
+
+   
+	<div class="split right">
+		<div class="header">
+			<h1>info contatto</h1>
+		</div>
 		<div id="chat" class="centered">
+
 	    	<p>storico chat</p>
 	    	<h1>chat</h1>
+
+	    	
 	  	</div>
 	</div>
+
+
+
+
+
+
 	<!--
 	<form method= 'post' action="inviamsg.php">
 		nickname destinatario:<br>
@@ -164,6 +183,11 @@
   		<input type="submit" value="Submit">
 	</form>-->
 </body>
+
+
+
+
+
 </html>
 
 <script> 
@@ -172,19 +196,5 @@
 					var element = document.getElementById('chat');
 				}
 				$( ".main" ).wrap( "<div class='scroll'></div>" );
-
-
-				var mysql = require('mysql');
-
-				var con = mysql.createConnection({
-				  host: "localhost",
-				  user: "yourusername",
-				  password: "yourpassword"
-				});
-
-				con.connect(function(err) {
-				  if (err) throw err;
-				  console.log("Connected!");
-				});
 </script>
 

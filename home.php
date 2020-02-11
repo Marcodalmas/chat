@@ -55,6 +55,14 @@
 			text-align: center;
 			overflow-x: hidden;
 		}
+		.chat-popup {
+		  display: none;
+		  position: fixed;
+		  bottom: 500;
+		  right: 15px;
+		  border: 3px solid #f1f1f1;
+		  z-index: 9;
+		}
 
 	</style>
 
@@ -76,18 +84,30 @@
                 <div>$frasetta</div>
             </div>";
         ?>
-        <div role="form">
-            
-            <button class="btn btn-warning  justify-content-end"><i class="fa fa-gears"></i></button>
+        <div role="form">            
             <br><br>
             <form action="logout.php" class="justify-content-end flex-row-reverse">
                 <button class="btn btn-danger  justify-content-end">LOGOUT</button>
             </form>
-        </div>
+			
+			<br>
+
+            <button class="btn btn-warning  justify-content-end" onclick="openForm()"><i class="fa fa-gears"></i></button>
+
+            <div class="chat-popup" id="myForm">
+			  <form action="/action_page.php" class="form-container">
+			    <h1>Impostazioni</h1>
+
+			    <button type="button" class="btn btn-danger" onclick="closeForm()">Close</button>
+			  </form>
+        	</div>
+            
+            
     </div>
+</div>
     <!-- POST -->
 
-    <div class="row">
+    <div class="col" style="top: 300px">
 
         <?php
             $query = "SELECT *
@@ -135,3 +155,17 @@
 	
 </body>
 </html>
+<script>
+	function openForm() {
+	  document.getElementById("myForm").style.display = "block";
+	}
+
+	function closeForm() {
+	  document.getElementById("myForm").style.display = "none";
+	}
+
+
+
+
+
+</script>
