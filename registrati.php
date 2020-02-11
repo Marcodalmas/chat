@@ -196,7 +196,7 @@
 					document.getElementById('rpwd').style="border:2px solid red";
 			}
 			else
-				document.getElementById('rpwd').style="border:2px solid black";
+				document.getElementById('rpwd').style="border:none";
 		}
 		setInterval('colore()',100);
 
