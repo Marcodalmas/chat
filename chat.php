@@ -24,14 +24,14 @@
 
 	
 
-	
-	
-
  ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="Script/jquery.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
 	<style type="text/css">
 		body {
 		  font-family: Arial;
@@ -116,7 +116,17 @@
 		  outline: 1px solid slategrey;
 		}
 
+		.friends{
+			background-color: black;
+			border: 1px solid white; 
+			height: 40px;
+		}
 		
+		.img{
+			width: 20px;
+			height: 20px;
+		}
+
 	</style>
 
 
@@ -126,11 +136,21 @@
 
 	<div class="split left">
 		<div class="header">
-			<h1>search</h1>
+			<input type="text" id="search" placeHolder="Search" class="btn btn-light">
+			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button>
+			
+			<div role="form">  
+          <div class="chat-popup" id="myForm">
+
+        	</div> 
+    	</div>
+
 		</div>
+
+
 		<div class="scrollmenu">
 			<?php
-				$sql="SELECT uid, nickname
+				$sql="SELECT uid, nickname, foto
 				  	  FROM amicizie AS a
 				      JOIN utenti AS u ON a.uid_a = u.uid
 					  WHERE a.uid_da = $id";
@@ -140,18 +160,19 @@
 				echo "<div class='btn-group-vertical' style='width: 99%'>";
 
 				foreach ($stmt as $row) {
-				echo "<button type='button' class='btn btn-primary' style='background-color: black; border: 1px solid white; height: 40px;'>$row[nickname]</button><br>";
+					if($row['foto'] == 1)
+						echo "<button type='button' class='btn btn-primary friends'>
+										<img src='foto/$id.png' class='img'>
+										$row[nickname]</button><br>";
+					else
+						echo "<button type='button' class='btn btn-primary friends'>
+										<img src='foto/0.png' class='img'>
+										$row[nickname]</button><br>";
 				}
-
 				echo "</div>";
-     		?>	 
+     	?>	 
 		</div> 
-
-
-	</div>
-
-
-
+</div>
 
 
 
@@ -171,9 +192,6 @@
 
 
 
-
-
-
 	<!--
 	<form method= 'post' action="inviamsg.php">
 		nickname destinatario:<br>
@@ -183,18 +201,39 @@
   		<input type="submit" value="Submit">
 	</form>-->
 </body>
-
-
-
-
-
 </html>
 
-<script> 
+<script>
 
-				function view($id){
-					var element = document.getElementById('chat');
-				}
-				$( ".main" ).wrap( "<div class='scroll'></div>" );
+			var popup = 'none';
+
+			function view($id){
+				var element = document.getElementById('chat');
+			}
+			$( ".main" ).wrap( "<div class='scroll'></div>" );
+			
+			function search(){
+				var elem = $('#search').val();
+				$.ajax({
+					url: "search.php",
+					method: "post",
+					data: {'nick': elem},
+					dataType: "html",
+					success: function(data){
+						$('#myForm').html(data);
+					}
+				});
+				change();
+			}
+
+			//FOR POP-UP
+			function change() {
+				if(popup == 'none')
+					popup = 'block';
+				else
+					popup = 'none';
+				document.getElementById("searchUser").style.display = popup;
+			}
+
 </script>
 
