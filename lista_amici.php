@@ -26,12 +26,12 @@
 
 		if (if_online($row['uid_a'],$pdo)) {
 			
-			$stato='<span class="label label-success">Online</span>';
+			$stato='<i class="fa fa-user"></i>';
 
 		}
 		else{
 
-			$stato='<span class="label label-danger">Offline</span>';
+			$stato='<i class="fa fa-user"></i>';
 
 		}
 
