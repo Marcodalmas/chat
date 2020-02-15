@@ -23,11 +23,8 @@
 
 	foreach ($stmt as $row) {
 		$stato='';
-		$current_timestamp= strtotime(date('Y-m-d H:i:s'). '-10 second');
-		$current_timestamp= date('Y-m-d H:i:s',  $current_timestamp);
-		$utente_last_a= lista_amici_ultimo_accesso($row['uid_a'],$pdo);
 
-		if ($utente_last_a > $current_timestamp) {
+		if (if_online($row['uid_a'],$pdo)) {
 			
 			$stato='<span class="label label-success">Online</span>';
 
