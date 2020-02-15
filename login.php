@@ -24,11 +24,11 @@
 			$_SESSION['frasetta']=$log['frasetta'];
 
 			$query = "Insert into login_details (uid)
-					  values ($id)";
+					  values (?)";
 
 			$stmt = $pdo -> prepare($query);
 
-			$stmt -> execute(); 
+			$stmt -> execute([$id]); 
 
 			$_SESSION['logdid'] = $pdo->lastInsertId();
 

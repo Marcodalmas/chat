@@ -7,7 +7,7 @@
 	$logdid = $_SESSION['logdid'];
 
 	$query="UPDATE login_details
-	set last_a = now()
+	set last_a = CURRENT_TIMESTAMP
 	where logdid = ?" ;
 
 	$stmt -> $pdo -> prepare($query);
