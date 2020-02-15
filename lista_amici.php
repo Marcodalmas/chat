@@ -1,7 +1,7 @@
 <?php 
 
 	include_once 'dbConnection.php';
-
+	include_once 'utils.php';
 	session_start();
 
 	$logdid = $_SESSION['logdid'];
