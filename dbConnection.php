@@ -5,21 +5,22 @@ try {
 		echo"fail";
 	}
 
-	function lista_amici_ultimo_accesso($id, $pdo)
-{
- $query = "
- SELECT * FROM login_details 
- WHERE uid = '$id' 
- ORDER BY last_a DESC 
- LIMIT 1
- ";
- $statement = $connect->prepare($query);
- $statement->execute();
- $result = $statement->fetchAll();
- foreach($result as $row)
- {
-  return $row['last_a'];
- }
+	function lista_amici_ultimo_accesso($uid, $pdo){
+	 $query = "
+		 SELECT * 
+		 FROM login_details 
+		 WHERE uid = '$uid' 
+		 ORDER BY last_a DESC 
+		 LIMIT 1
+		";
+
+		 $stmt = $pdo->prepare($query);
+		 $stmt->execute();
+		 $result = $stmt->fetchAll();
+		 foreach($result as $row)
+		 {
+		  return $row['last_a'];
+		 }
 }
 
 ?>
