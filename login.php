@@ -15,11 +15,23 @@
 
 		if ($log != 0) {
 
+
+
 			session_start();
 			$id = id_from_nick($_REQUEST['nick'],$pdo);
 			$_SESSION['id']= $id;
 			$_SESSION['nick']=$_REQUEST['nick'];
 			$_SESSION['frasetta']=$log['frasetta'];
+
+			$query = "Insert into login_details (uid)
+					  values ($id)";
+
+			$stmt = $pdo -> prepare($query);
+
+			$stmt -> execute(); 
+
+			$_SESSION['logdid'] = $pdo->lastInsertId();
+
 			if($log['foto'] == 1){
 			    $_SESSION['foto']="foto/$id.png";
 			}

@@ -149,28 +149,10 @@
 
 
 		<div class="scrollmenu">
-			<?php
-				$sql="SELECT uid, nickname, foto
-				  	  FROM amicizie AS a
-				      JOIN utenti AS u ON a.uid_a = u.uid
-					  WHERE a.uid_da = $id";
-
-				$stmt = $pdo->query($sql);
-
-				echo "<div class='btn-group-vertical' style='width: 99%'>";
-
-				foreach ($stmt as $row) {
-					if($row['foto'] == 1)
-						echo "<button type='button' class='btn btn-primary friends'>
-										<img src='foto/$id.png' class='img'>
-										$row[nickname]</button><br>";
-					else
-						echo "<button type='button' class='btn btn-primary friends'>
-										<img src='foto/0.png' class='img'>
-										$row[nickname]</button><br>";
-				}
-				echo "</div>";
-     	?>	 
+			<div id="lista_amici">
+				
+			</div>
+		
 		</div> 
 </div>
 
@@ -184,7 +166,7 @@
 		<div id="chat" class="centered">
 
 	    	<p>storico chat</p>
-	    	<h1>chat</h1>
+	    	<h1>chatttttttttt</h1>
 
 	    	
 	  	</div>
@@ -234,6 +216,33 @@
 					popup = 'none';
 				document.getElementById("searchUser").style.display = popup;
 			}
+			
+			function lista_amici(){
+				$.ajax({
+					url: "lista_amici.php",
+					method: "post",
+					success: function(data){
+						$('#lista_amici').html(data);
+					}
+				});
+			}
+
+			function ultimo_accesso(){
+				$.ajax({
+					url:"ultimo_accesso.php",
+					success: function(){
+
+					}
+				});
+			}
+			$(document).ready(function(){
+				lista_amici();
+				setInterval(function(){
+					lista_amici();
+					ultimo_accesso();
+				}, 5000);
+
+			});
 
 </script>
 

@@ -18,6 +18,8 @@
 		header('Location: profile.php');
 			exit();
 	}
+
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -73,8 +75,8 @@
 </head>
 <body class="container pt-3">
 
-	<div class="header row m-3 p-3" id="header">
-		<!-- header Foto profilo
+	<div class="header row m-3 p-3" id="myHeader">
+		<!-- Foto profilo
 			  Nickname-->
         <?php 
         echo "<img src=\"$foto\" class=\"rounded-circle p-2 m-2\" width=\"150\" height=\"150\">";
@@ -89,26 +91,29 @@
             <form action="logout.php" class="justify-content-end flex-row-reverse">
                 <button class="btn btn-danger  justify-content-end">LOGOUT</button>
             </form>
-			
+				
 			<br>
 
-            <button class="btn btn-warning  justify-content-end" onclick="openForm()"><i class="fa fa-gears"></i></button>
+            <button class="btn btn-warning  justify-content-end" onclick="openForm('myForm')"><i class="fa fa-gears"></i></button>
 
             <div class="chat-popup" id="myForm">
-			  <form action="/action_page.php" class="form-container">
 			    <h1>Impostazioni</h1>
-
-			    <button type="button" class="btn btn-danger" onclick="closeForm()">Close</button>
-			  </form>
-        	</div> 
-    	</div>
-	</div>
-
-
-
+				    <div role="form">
+					    <form action="user_blocked.php" class="form-container">
+					    	<button class="btn btn-warning" type="submit" onclick="openForm('block')">Utenti bloccati</button>
+					    </form>
+					    <br>
+					    <br>
+					    <button type="button" class="btn btn-danger" onclick="closeForm('myForm')">Close</button>
+					</div>
+        	</div>
+            
+            
+    </div>
+</div>
     <!-- POST -->
 
-    <div style="top: 300spx">
+    <div class="col" style="top: 300px">
 
         <?php
             $query = "SELECT *
@@ -157,12 +162,12 @@
 </body>
 </html>
 <script>
-	function openForm() {
-	  document.getElementById("myForm").style.display = "block";
+	function openForm(identificatore) {
+	  document.getElementById(identificatore).style.display = "block";
 	}
 
-	function closeForm() {
-	  document.getElementById("myForm").style.display = "none";
+	function closeForm(identificatore) {
+	  document.getElementById(identificatore).style.display = "none";
 	}
 
 
