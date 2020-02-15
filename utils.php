@@ -128,5 +128,22 @@
 	}
 
 
+	function lista_amici_ultimo_accesso($uid, $pdo){
+		 $query = "
+			 SELECT * 
+			 FROM activity 
+			 WHERE uid = $uid
+			 ORDER BY last_a DESC 
+			 LIMIT 1
+			";
+
+			 $stmt = $pdo->prepare($query);
+			 $stmt->execute();
+			 $result = $stmt->fetchAll();
+			 foreach($result as $row)
+			 {
+			  return $row['last_a'];
+			 }
+	}
 
  ?>

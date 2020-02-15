@@ -23,7 +23,7 @@
 			$_SESSION['nick']=$_REQUEST['nick'];
 			$_SESSION['frasetta']=$log['frasetta'];
 
-			$query = "INSERT INTO login_details (uid)
+			$query = "INSERT INTO activity(uid)
 					  VALUES (?)";
 
 			$stmt = $pdo -> prepare($query);
