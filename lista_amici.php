@@ -26,7 +26,7 @@
 
 		if (if_online($row['uid_a'],$pdo)) {
 			
-			$stato='<i class="fa fa-user" style="background-color:red"></i>';
+			$stato='<i class="fa fa-user" style="background-color:green"></i>';
 
 		}
 		else{
@@ -39,13 +39,13 @@
 			echo "<button type='button' class='btn btn-primary friends start_chat'  data-a_uid='$row[uid_a]'>
 									<img src='foto/$id.png' class='img'>";
 									echo "$stato";
-									echo ";$row[nickname]</button><br>";
+									echo "$row[nickname]</button><br>";
 		}
 		else{
 			echo "<button type='button' class='btn btn-primary friends start_chat'  data-a_uid='$row[uid_a]'>
 							<img src='foto/0.png' class='img'>";
 							echo "$stato";
-							echo ";$row[nickname]</button><br>";
+							echo "$row[nickname]</button><br>";
 		}
 	}
 	echo "</div>";
