@@ -99,6 +99,34 @@
 		}
 	}
 
+	function user_blocked($pdo, $id){
+
+			$stmt = $pdo -> prepare("SELECT a.uid_a,(SELECT nickname
+													FROM utenti
+													WHERE uid = a.uid_a) AS nickname,
+												(SELECT foto
+												FROM utenti
+												WHERE uid = a.uid_a) AS foto
+									FROM utenti AS u
+									JOIN amicizie AS a
+									ON u.uid = a.uid_da
+									WHERE u.uid=?
+									AND a.sospensione = 'S'");
+			$stmt -> execute([$id]);
+			return $stmt;
+	}
+
+	function removeBlocked($pdo, $uid, $id){
+
+		$query = "UPDATE amicizie
+				  SET sospensione = 'N'
+				  WHERE uid_da = ? AND uid_a = ?";
+
+		$stmt = $pdo->prepare($query);
+
+		$stmt->execute([$uid,$id]);
+	}
+
 
 
  ?>
