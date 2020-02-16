@@ -234,30 +234,7 @@
 				});
 			}
 
-			function box_dialogo(uid_a){
-
-				var contenuto = '<div id="finestra_dialogo"'+uid_a+'"class = "user_dialog" title= chat con'+nick_from_id(uid_a,$pdo)+'">';
-				modal_content +='<div style height:70%; border: 2px solid black; overflow-y: scroll; margin-bottom: 20px; padding:16px" class="chat_hisory" data-touserid="'+uid_a'" id="chat_hisory_'+uid_a+'">';
-				modal_content += '</div>'
-				modal_content += '</div class="form-group">';
-				modal_content += '<textarea name="chat" id="chat_m'+uid_a+'" class="form-controll"></textarea>';
-				modal_content += '</div><div class="form-group" align="right">';
-				modal_content += '<button type="button" name="send" id="'+uid_a+'" class="btn btn-info send">send</div></div>'
-				$('#interfaccia').html(modal_content);
-			}
-
-			$(document).on('click', '.start_chat',function(){
-				var uid_a = $(this).data('uid_a');
-				box_dialogo(uid_a);
-				$("#chat_box"+uid_a).dialogo({
-					autoOpen:false;
-					width 400;
-
-				});
-
-				$('#chat_box'+uid_a).dialogo('open')
-
-			})
+			
 
 			$(document).ready(function(){
 				lista_amici();
