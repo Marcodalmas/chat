@@ -35,6 +35,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<style type="text/css">
+
 		body {
 		  font-family: Arial;
 		  color: white;
@@ -77,7 +78,8 @@
 		  border-radius: 50%;
 		}
 		.header {
-		  width: 105%;
+			position: fixed;
+		  width: 101%;
 		  top: 0px;
 		  padding: 10px 16px;
 		  background: black;
@@ -129,6 +131,68 @@
 			height: 20px;
 		}
 
+		/* Chat containers */
+		.containerC {
+		  border: 2px solid #dedede;
+		  background-color: #f1f1f1;
+		  border-radius: 5px;
+		  padding: 10px;
+		  margin: 10px 0;
+		}
+
+		/* Darker chat container */
+		.darker {
+		  border-color: #ccc;
+		  background-color: #ddd;
+		}
+
+		/* Clear floats */
+		.containerC::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
+
+		/* Style images */
+		.containerC img {
+		  float: left;
+		  max-width: 60px;
+		  width: 100%;
+		  margin-right: 20px;
+		  border-radius: 50%;
+		}
+
+		/* Style the right image */
+		.container img.right {
+		  float: right;
+		  margin-left: 20px;
+		  margin-right:0;
+		}
+
+		/* Style time text */
+		.time-right {
+		  float: right;
+		  color: #aaa;
+		}
+
+		/* Style time text */
+		.time-left {
+		  float: left;
+		  color: #999;
+		}
+
+		.footer {
+	   position: fixed;
+	   padding: 5px 10px;
+	   left: 1%;
+	   bottom: 0;
+	   width: 101%;
+	   background-color: black;
+	   color: white;
+	   text-align: center;
+	   padding-left: 40%;
+		}
+
 	</style>
 
 
@@ -140,46 +204,25 @@
 		<div class="header">
 			<input type="text" id="search" placeHolder="Search" class="btn btn-light">
 			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button>
-			
 			<div role="form">  
-          <div class="chat-popup" id="myForm">
-
-        	</div> 
-    	</div>
-
+         		<div class="chat-popup" id="myForm"></div> 
+    		</div>
 		</div>
-
-
 		<div class="scrollmenu">
-			<div id="lista_amici">
-				
-			</div>
-		
+			<div id="lista_amici"></div>
 		</div> 
-</div>
+	</div>
 
 
-
-   
 	<div class="split right">
 		<div class="header">
 			<h1>info contatto</h1>
 		</div>
-		<div id="chat" class="centered">
-	    	<div id="interfaccia"></div>
-	  	</div>
+	    <div id="interfaccia" style="padding: 5%"></div>
+
 	</div>
 
 
-
-	<!--
-	<form method= 'post' action="inviamsg.php">
-		nickname destinatario:<br>
- 		<input type="text" name="dest"><br>
- 		messaggio:<br>
-  		<input type="text" name="mex"><br>
-  		<input type="submit" value="Submit">
-	</form>-->
 </body>
 </html>
 
@@ -234,7 +277,29 @@
 				});
 			}
 
-			
+			function view(idA){
+                
+				$.ajax({
+					url: "getChat.php",
+					method: "post",
+					data: {'idA': idA},
+					success: function(data){
+						$('#interfaccia').html(data);
+					}
+				});
+			}
+
+			function sendMessage(idA){
+				var text = document.getElementById('messaggio').value;
+				$.ajax({
+					url: "sendMex.php",
+					method: "post",
+					data: {'idA': idA, 'testo': text},
+					success: function(data){
+						view(idA);
+					}
+				});
+			}
 
 			$(document).ready(function(){
 				lista_amici();
@@ -242,8 +307,8 @@
 					lista_amici();
 					ultimo_accesso();
 				}, 5000);
-
 			});
 
 </script>
+
 

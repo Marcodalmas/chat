@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 	include_once 'dbConnection.php';
 	session_start();
 	$id=$_SESSION['id'];
@@ -65,6 +66,8 @@
 		  border: 3px solid #f1f1f1;
 		  z-index: 9;
 		}
+
+	
 
 	</style>
 
@@ -161,6 +164,8 @@
 	
 </body>
 </html>
+
+
 <script>
 	function openForm(identificatore) {
 	  document.getElementById(identificatore).style.display = "block";

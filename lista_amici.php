@@ -36,13 +36,13 @@
 		}
 
 		if($row['foto'] == 1){
-			echo "<button type='button' class='btn btn-primary friends start_chat'  data-a_uid='$row[uid_a]'>
+			echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>
 									<img src='foto/$id.png' class='img'>";
 									echo "$stato";
 									echo "$row[nickname]</button><br>";
 		}
 		else{
-			echo "<button type='button' class='btn btn-primary friends start_chat'  data-a_uid='$row[uid_a]'>
+			echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>
 							<img src='foto/0.png' class='img'>";
 							echo "$stato";
 							echo "$row[nickname]</button><br>";
