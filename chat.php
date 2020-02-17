@@ -287,6 +287,9 @@
 						$('#interfaccia').html(data);
 					}
 				});
+				setInterval(function(){
+					view(idA);
+				}, 2000);
 			}
 
 			function sendMessage(idA){
@@ -308,6 +311,9 @@
 					ultimo_accesso();
 				}, 5000);
 			});
+
+
+
 
 </script>
 
