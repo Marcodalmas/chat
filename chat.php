@@ -40,16 +40,8 @@
 		  font-family: Arial;
 		  color: white;
 		}
-		.footer {
-		  position: fixed;
-		  left: 0;
-		  bottom: 0;
-		  width: 100%;
-		  background-color: red;
-		  color: white;
-		  text-align: center;
-		}
 
+		/* divisione pagina */
 		.split {
 		  height: 100%;
 		  width: 50%;
@@ -61,17 +53,18 @@
 		  direction: ltr;
 		}
 
+		/* divisione sx */
 		.left {
 		width: 30%;
 		  left: 0;
 		  background-color: black;
 		}
 
+		/* divisione dx */
 		.right {
 		  width: 70%;
 		  right: 0;
 		  background-color: orange;
-
 		}
 
 		.centered {
@@ -86,8 +79,10 @@
 		  width: 150px;
 		  border-radius: 50%;
 		}
+
+		/* header fisso in alto */
 		.header {
-			position: fixed;
+		  position: fixed;
 		  width: 101%;
 		  top: 0px;
 		  padding: 10px 16px;
@@ -96,6 +91,20 @@
 		  overflow-x: hidden;
 
 		}
+
+		/* footer fisso in basso */
+		.foot{
+		  position: fixed;
+		  width: 101%;
+		  bottom: 1px;
+		  padding: 10px 16px;
+		  background: black;
+		  color: #f1f1f1;
+		  overflow-x: hidden;
+
+		}
+
+		/* barra di scroll */
 		div.scrollmenu {
 		  background-color: black;
 		  overflow: auto;
@@ -116,6 +125,7 @@
 		  background-color: #777;
 		}
 
+		/* larghezza della barra */
 		div.scrollmenu::-webkit-scrollbar {
 		  width: 1em;
 		}
@@ -123,11 +133,14 @@
 		div.scrollmenu::-webkit-scrollbar-track {
 		  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 		}
-		 
+		
+		/* colore e dimensione */
 		div.scrollmenu::-webkit-scrollbar-thumb {
 		  background-color: darkgrey;
-		  outline: 1px solid slategrey;
+		  outline: 5px solid orange;
+
 		}
+		/* fine barra di scroll */
 
 		.friends{
 			background-color: black;
@@ -209,17 +222,14 @@
 </head>
 <body>
 
-	<div class="split left">
+	<div class="split left scrollmenu">
 		<div class="header">
-			<input type="text" id="search" placeHolder="Search" class="btn btn-light">
-			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button>
-			<div role="form">  
+			<input type="text" id="search" placeHolder="Search" class="btn btn-light " style="padding-left: 5%">
+			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button></div>
+			<div role="form" style="padding-top: 10%">  
          		<div class="chat-popup" id="myForm"></div> 
-    		</div>
-		</div>
-		<div class="scrollmenu">
-			<div id="lista_amici"></div>
-		</div> 
+    		</div> 
+    		<div id="lista_amici" style="padding-top: 30px"></div>	
 	</div>
 
 
@@ -230,7 +240,7 @@
 	    <div id="interfaccia" style="padding: 5%">
 	    	
 	    </div>
-	    <div class='footer row'>
+	    <div class='foot'>
         	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
         	<button onclick="sendMessage();"><i class='fa fa-send'></i></button>
         </div>
