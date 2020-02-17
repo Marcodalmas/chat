@@ -40,6 +40,15 @@
 		  font-family: Arial;
 		  color: white;
 		}
+		.footer {
+		  position: fixed;
+		  left: 0;
+		  bottom: 0;
+		  width: 100%;
+		  background-color: red;
+		  color: white;
+		  text-align: center;
+		}
 
 		.split {
 		  height: 100%;
@@ -220,14 +229,13 @@
 		</div>
 	    <div id="interfaccia" style="padding: 5%">
 	    	
-	    	<div class='footer row'>
-        	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
-        	<button onclick='sendMessage($uid_a)'><i class='fa fa-send'></i></button>
-          </div>
 	    </div>
+	    <div class='footer row'>
+        	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
+        	<button onclick="sendMessage();"><i class='fa fa-send'></i></button>
+        </div>
 
 	</div>
-
 
 </body>
 </html>
@@ -298,7 +306,8 @@
 				}, 2000);
 			}
 
-			function sendMessage(idA){
+			function sendMessage(){
+				var idA = document.getElementById('idA').value;
 				var text = document.getElementById('messaggio').value;
 				$.ajax({
 					url: "sendMex.php",

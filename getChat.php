@@ -14,7 +14,7 @@
 	$stmt = $pdo -> prepare($query);
 	$stmt -> execute([$uid_da,$uid_a,$uid_a,$uid_da]);
 
-
+	echo "<input type='hidden' id='idA' value='$uid_a'>";
 	foreach ($stmt as $mex) {
 
 		if ($mex['e_uid']==$uid_da) {

@@ -37,7 +37,8 @@
 
 		if($row['foto'] == 1){
 			echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>
-									<img src='foto/$id.png' class='img'>";
+									<img src='foto/$id.png' class='img'>"
+									;
 									echo "$stato";
 									echo "$row[nickname]</button><br>";
 		}
