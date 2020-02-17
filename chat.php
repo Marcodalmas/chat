@@ -291,9 +291,10 @@
 				});
 			}
 
-			function view(idA){
-                
-				$.ajax({
+			function view(){
+                var idA = document.getElementById('idA').value;
+                if(idA != ""){
+                	$.ajax({
 					url: "getChat.php",
 					method: "post",
 					data: {'idA': idA},
@@ -301,10 +302,10 @@
 						$('#interfaccia').html(data);
 					}
 				});
-				setInterval(function(){
-					view(idA);
-				}, 2000);
+                }
 			}
+
+
 
 			function sendMessage(){
 				var idA = document.getElementById('idA').value;
@@ -317,7 +318,7 @@
 						view(idA);
 					}
 				});
-
+				document.getElementById('messaggio').value = "";
 			}
 
 			$(document).ready(function(){
@@ -326,6 +327,9 @@
 					lista_amici();
 					ultimo_accesso();
 				}, 5000);
+				setInterval(function(){
+					view();
+				}, 2000);
 			});
 
 
