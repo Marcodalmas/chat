@@ -139,5 +139,42 @@
 		$stmt -> execute ([$newNick,$newFras,$id]);
 	}
 
+	function if_online($uid, $pdo){
+		 $query = "
+			 SELECT * 
+			 SELECT *
+			 FROM activity 
+			 WHERE uid = $uid
+			 WHERE uid = ?
+			 ORDER BY last_a DESC 
+			 LIMIT 1
+			";
+ 			$stmt = $pdo->prepare($query);
+			$stmt->execute([$uid]);
 
+			if($stmt->rowCount() == 1)
+		 		return 1;
+		 	else 
+		 		return 0;
+			 
+	}
+
+	function lista_amici_ultimo_accesso($uid, $pdo){
+		 $query = "
+			 SELECT * 
+			 FROM activity 
+			 WHERE uid = ?
+			 ORDER BY last_a DESC 
+			 LIMIT 1
+			";
+
+			$stmt = $pdo->prepare($query);
+		 	$stmt->execute([$uid]);
+
+			if($stmt->rowCount() == 1)
+		 		return 1;
+		 	else 
+		 		return 0;
+			 
+	}
  ?>
