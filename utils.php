@@ -127,24 +127,17 @@
 		$stmt->execute([$uid,$id]);
 	}
 
+	function change_nick_status($pdo, $id, $newNick, $newFras){
+		
+		$query = "UPDATE utenti as u
+				  SET u.nickname = ?,
+				  	  u.frasetta = ?
+				  WHERE u.uid = ?";
 
-	function if_online($uid, $pdo){
-		 $query = "
-			 SELECT *
-			 FROM activity 
-			 WHERE uid = ?
-			 ORDER BY last_a DESC 
-			 LIMIT 1
-			";
+		$stmt = $pdo -> prepare($query);
 
-		 $stmt = $pdo->prepare($query);
-		 $stmt->execute([$uid]);
-
-		 if($stmt->rowCount() == 1)
-		 	return 1;
-		 else 
-		 	return 0;
-			 
+		$stmt -> execute ([$newNick,$newFras,$id]);
 	}
+
 
  ?>

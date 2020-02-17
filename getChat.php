@@ -8,7 +8,8 @@
 	$query = 'SELECT m.e_uid, m.testo, m.e_quando
 			  FROM messaggi AS m
 			  WHERE (m.e_uid = ? AND m.r_uid = ?) OR (m.e_uid = ? AND m.r_uid = ?)
-			  ORDER BY m.e_quando DESC ';
+			  ORDER BY m.e_quando 
+			  LIMIT 50 ';
 
 	$stmt = $pdo -> prepare($query);
 	$stmt -> execute([$uid_da,$uid_a,$uid_a,$uid_da]);
@@ -32,8 +33,4 @@
 		}
 	}
 
-	echo "<div class='footer row'>
-        	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
-        	<button onclick='sendMessage($uid_a)'><i class='fa fa-send'></i></button>
-          </div>";
 ?>

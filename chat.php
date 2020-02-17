@@ -218,7 +218,13 @@
 		<div class="header">
 			<h1>info contatto</h1>
 		</div>
-	    <div id="interfaccia" style="padding: 5%"></div>
+	    <div id="interfaccia" style="padding: 5%">
+	    	
+	    	<div class='footer row'>
+        	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
+        	<button onclick='sendMessage($uid_a)'><i class='fa fa-send'></i></button>
+          </div>
+	    </div>
 
 	</div>
 
@@ -302,6 +308,7 @@
 						view(idA);
 					}
 				});
+
 			}
 
 			$(document).ready(function(){
