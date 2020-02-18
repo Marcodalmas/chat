@@ -214,6 +214,7 @@
 	   text-align: center;
 	   padding-left: 40%;
 		}
+	
 
 	</style>
 
@@ -254,9 +255,6 @@
 
 			var popup = 'none';
 
-			function view($id){
-				var element = document.getElementById('chat');
-			}
 			$( ".main" ).wrap( "<div class='scroll'></div>" );
 			
 			function search(){
@@ -301,20 +299,37 @@
 				});
 			}
 
-			function view(){
-                var idA = document.getElementById('idA').value;
-                if(idA != ""){
+			var idLast = 0;
+			var chatAtt;
+
+			function view(idA){
+				//per primo giro
+				if(idLast == 0) idLast = idA;
+
+				//cambio chat
+				if(idA !=idLast){
+					clearInterval(chatAtt);
+
+					idLast = idA;
+					chatAtt = setInterval(function(){
+								view(idLast);
+							  }, 2000);
+				}
+
+
+                if(idLast != ""){
                 	$.ajax({
 					url: "getChat.php",
 					method: "post",
-					data: {'idA': idA},
+					data: {'idA': idLast},
 					success: function(data){
 						$('#interfaccia').html(data);
 					}
 				});
                 }
-			}
 
+                
+			}
 
 
 			function sendMessage(){
@@ -337,9 +352,7 @@
 					lista_amici();
 					ultimo_accesso();
 				}, 5000);
-				setInterval(function(){
-					view();
-				}, 2000);
+				
 			});
 
 

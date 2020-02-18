@@ -20,14 +20,14 @@
 		if ($mex['e_uid']==$uid_da) {
 			//dx io mittente
 			echo"<div class='containerC'>";
-			echo"<p>$mex[testo]<p>";
+			echo"<p style='color: black;'>$mex[testo]<p>";
 			echo"<span class='time-right'>$mex[e_quando]</span>";
 			echo"</div>";
 		}
 		else{
 			//sx ricevente
 			echo"<div class='containerC darker'>";
-			echo"<p>$mex[testo]<p>";
+			echo"<p style='color: black;'>$mex[testo]<p>";
 			echo"<span class='time-left'>$mex[e_quando]</span>";
 			echo"</div>";
 		}
