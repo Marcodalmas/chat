@@ -5,10 +5,13 @@
 	$uid_da=$_SESSION['id']??0;
 	$uid_a=$_REQUEST['idA']??0;
 
+	echo $uid_da;
+	echo $uid_a;
+
 	$query = 'SELECT m.e_uid, m.testo, m.e_quando
 			  FROM messaggi AS m
 			  WHERE (m.e_uid = ? AND m.r_uid = ?) OR (m.e_uid = ? AND m.r_uid = ?)
-			  ORDER BY m.e_quando 
+			  ORDER BY m.e_quando DESC
 			  LIMIT 50 ';
 
 	$stmt = $pdo -> prepare($query);

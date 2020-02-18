@@ -214,7 +214,7 @@
 	   text-align: center;
 	   padding-left: 40%;
 		}
-	
+
 
 	</style>
 
@@ -303,8 +303,6 @@
 			var chatAtt;
 
 			function view(idA){
-				//per primo giro
-				if(idLast == 0) idLast = idA;
 
 				//cambio chat
 				if(idA !=idLast){
@@ -340,7 +338,7 @@
 					method: "post",
 					data: {'idA': idA, 'testo': text},
 					success: function(data){
-						view(idA);
+			
 					}
 				});
 				document.getElementById('messaggio').value = "";
