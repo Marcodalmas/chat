@@ -177,4 +177,21 @@
 		 		return 0;
 			 
 	}
- ?>
+
+	function frasetta($id, $pdo){
+
+		$sql=" SELECT u.frasetta
+				FROM utenti AS u
+				WHERE u.uid=? ";
+
+		$stmt = $pdo -> prepare($sql);
+
+		$stmt -> execute([$id]);
+		
+		foreach ($stmt as $row) {
+			$frasetta = $row['frasetta'];
+		}
+
+		return $frasetta;
+	}
+?>

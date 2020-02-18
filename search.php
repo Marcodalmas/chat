@@ -12,7 +12,7 @@
 
     foreach($stmt as $user){
 
-        echo '<div onclick="showProfile()">
-                <input type="submit" value="'.$user['nickname'].'">
-                </div>';
+        echo "<a href=showProfile.php?$user[nickname]>$user[nickname]</a><br>";
     }
+?>
+
