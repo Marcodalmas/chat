@@ -7,10 +7,41 @@
 	$frasetta=$_SESSION['frasetta'];
 	$foto=$_SESSION['foto'];
 	
+	$foto1="<button type='submit' name='cambio' style='width:20%;' class='btn btn-success'>Modifica</button><br>";
+
 
 	if($frasetta == ""){
 		$frasetta = "Hey there, I'm using whatsapp";
 	}
+
+	if (isset($_REQUEST['cambio'])) {
+		$foto1="<input type='file' style='margin-left:40%;' name='foto' accept='image/png'><br><br>
+				<table>
+					<tr>
+						<td style='width:1.5%;'><button type='submit' name='elimina' style='width:80%;' class='btn btn-danger'>Elimina foto</button></td>
+						<td style='width:5%;'><button type='submit' name='salva' style='width:37.5%;' class='btn btn-success'>OK</button></td>
+					</tr>";
+	}
+
+	if (isset($_REQUEST['salva'])){
+
+		if($_FILES['foto']['size'] != 0)
+            $foto=1;
+
+        if($foto == 1){
+			$_FILES['foto']['name'] = $id.'.png';
+			$target_Path = "foto/";
+	        $target_Path = $target_Path.basename($_FILES['foto']['name']);
+	        move_uploaded_file( $_FILES['foto']['tmp_name'], $target_Path );
+
+	        $_SESSION['foto']="foto/$id.png";
+	    }
+	}
+
+	if (isset($_REQUEST['elimina'])){
+			$foto = 'foto/0.png';
+			$_SESSION['foto'] = $foto;
+		}
 
 	if (isset($_REQUEST['change'])){
 		
@@ -59,7 +90,7 @@
 		table {
 			position: relative;
 			margin-left: 37.5%;
-			width: 41.5%;
+			width: 30%;
 		  	border: 1px solid black;
 		  	background-color: black;
 		}	
@@ -75,8 +106,8 @@
 		}
 		
 
-		tr{
-			
+		tr, td{
+				
 
 		}
 
@@ -99,22 +130,33 @@
        	<form action="" method="GET">
        		<?php 
        		echo "<img src=\"$foto\" class=\"rounded-circle p-2 m-2\" width=\"100\" height=\"100\"><br>";
-       		echo "<button type='button' style='width:25%;' class='btn btn-success' onclick='change_foto()'>Modifica</button><br>";
+       		echo $foto1;
        		?>
        		<br>
-			<table class="">
-				<tr>
-					<td><input type="text" id='nuovoStatus' name="status" value="<?php echo $frasetta;?>"></td>
-				</tr>
-       			<tr>	
-					<td><input type="text" id='nuovaNick' name="nick" value="<?php echo $nick;?>"></td>
-				</tr>
-       			<tr>
-       				<td><button type="submit" style="width: 60%; text-align: middle;"  name="change" class="btn btn-success">Modifica</button></td>
-       			</tr>
-			</table>
-       		
        	</form>
+       	<form>	
+	       	<table class="">
+					<tr>
+						<td>Status:<br><input type="text" id='nuovoStatus' name="status" value="<?php echo $frasetta;?>"></td>
+					</tr>
+	       			<tr>	
+						<td>Nickname:<br><input type="text" id='nuovaNick' name="nick" value="<?php echo $nick;?>"></td>
+					</tr>
+					<tr>	
+						<td>Password:<br><input type="password"  name="oldpwd" placeholder="Vecchia password"></td>
+					</tr>
+					<tr>	
+						<td><input type="password" name="newpwd" placeholder="Nuova password"></td>
+					</tr>
+					<tr>	
+						<td><input type="password"  name="confpwd" placeholder="Conferma password"></td>
+					</tr>
+	       			<tr>
+	       				<td><button type="submit" style="width: 60%; margin-top: 1.5%; text-align: middle;"  name="change" class="btn btn-success">Modifica</button></td>
+	       			</tr>
+				</table>
+       	</form>
+			
 	</div>
 	<br>
 	<div class="footer">

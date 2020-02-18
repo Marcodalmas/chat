@@ -1,13 +1,12 @@
 <?php 
 	include_once 'dbConnection.php';
 	include_once 'utils.php';
-	$nick='facco';
-	$id=id_from_nick($nick,$pdo);
-	$frasetta=frasetta($id,$pdo);
-
-
-
-
+	$nickA='facco';
+	$idA=id_from_nick($nickA,$pdo);
+	$frasetta=frasetta($idA,$pdo);
+	session_start();
+	$id=$_SESSION['id'];
+	$nick=$_SESSION['nick'];
 
 ?>
 <!DOCTYPE html>
@@ -53,6 +52,44 @@
 		.row:nth-child(2) {
 		  background-color: orange;
 		}
+
+		/* barra di scroll */
+		div.scrollmenu {
+		  background-color: black;
+		  overflow: auto;
+		  white-space: nowrap;
+		   overflow-x: : hidden;
+		  
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 3%;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #777;
+		}
+
+		/* larghezza della barra */
+		div.scrollmenu::-webkit-scrollbar {
+		  width: 1em;
+		}
+		 
+		div.scrollmenu::-webkit-scrollbar-track {
+		  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+		
+		/* colore e dimensione */
+		div.scrollmenu::-webkit-scrollbar-thumb {
+		  background-color: darkgrey;
+		  outline: 5px solid orange;
+
+		}
+		/* fine barra di scroll */
 	</style>
 	<title></title>
 </head>
@@ -60,27 +97,42 @@
 	
     <div class="row">
 		<?php 
-	        echo "<img src=\"$id\" class=\"rounded-circle p-2 m-2\" width=\"200\" height=\"200\">";
+	        echo "<img src=\"$idA\" class=\"rounded-circle p-2 m-2\" width=\"200\" height=\"200\">";
 	        
 	        echo "<div class=\"col\">
-	                <h2>$nick</h2>
+	                <h2>$nickA</h2>
 	                <div>$frasetta</div>
 	            </div>";
-	        ?>
-	    <button type="submit" class="btn btn-success fa fa-unlock"></button>
-	    <button type="submit" class="btn btn-danger fa fa-unlock-alt"></button>
-	    <button type="submit" class="btn btn-success fa fa-user-plus"></button>
-	    <button type="submit" class="btn btn-danger fa fa-user-times"></button>
-	</div>
+	        if (friend($id,$idA,$pdo)) {
+	        	//se è friend bottone togli amicizia
+	        	echo "<button type='submit' class='btn btn-danger fa fa-user-times '> </button>";
+	        }
+	        else{
+	        	//se non è friend pulsante dai amicizia
+	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus '> </button>";
+	        }
 
-	<div class="row">
-		<div class="footer">
-		<form action="chat.php" class="container">
-			<button style="width: 75%" type="submit" name="back" class="btn btn-danger"><i style="" class="fa fa-arrow-left"></i></button>
-		</form>
+	        if (is_blocked($id,$idA,$pdo)) {
+	        	//se non è bloccato pulsante per il block
+	        	 echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt '> </button>";
+	        }
+	        else{
+	        	//se è bloccato pulsante sbloccato
+	        	echo "<button type='submit' class='btn btn-success fa fa-unlock '> </button>";
+	        }
+	        ?>
+	    
+	    <h1> </h1>
 	</div>
-	  
-	</div>
+	
+		<div class="row scrollmenu">
+			
+			<div class="footer">
+				<form action="chat.php" class="container">
+					<button style="width: 75%" type="submit" name="back" class="btn btn-danger"><i style="" class="fa fa-arrow-left"></i></button>
+				</form>
+			</div>
+		</div>
 
 
 
