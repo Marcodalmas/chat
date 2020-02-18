@@ -1,7 +1,7 @@
 <?php 
 	include_once 'dbConnection.php';
 	include_once 'utils.php';
-	$nickA='facco';
+	$nickA=$_REQUEST['utente'];
 	$idA=id_from_nick($nickA,$pdo);
 	$frasetta=frasetta($idA,$pdo);
 	session_start();
