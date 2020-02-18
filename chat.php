@@ -238,7 +238,7 @@
 		<div class="header">
 			<h1>info contatto</h1>
 		</div>
-	    <div id="interfaccia" style="padding: 8% ">
+	    <div id="interfaccia" style="padding: 6% ">
 	    	
 	    </div>
 	    <div class='foot'>
