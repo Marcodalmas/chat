@@ -40,6 +40,8 @@
 		  width: 100%;
 		}
 
+		/*dividi schermo*/
+
 		.row {
 		  display: table-row;
 		  height: 50%;
@@ -113,12 +115,12 @@
 	        }
 
 	        if (is_blocked($id,$idA,$pdo)) {
-	        	//se non è bloccato pulsante per il block
-	        	 echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt '> </button>";
-	        }
-	        else{
 	        	//se è bloccato pulsante sbloccato
 	        	echo "<button type='submit' class='btn btn-success fa fa-unlock '> </button>";
+	        }
+	        else{
+	        	//se non è bloccato pulsante per il block
+	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt '> </button>";
 	        }
 	        ?>
 	    
