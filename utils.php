@@ -209,7 +209,7 @@
 	function is_blocked($uid_da,$uid_a,$pdo){
 		$sql="SELECT 1
 			FROM amicizie AS a
-			WHERE a.uid_da = ? AND a.uid_a=? and a.sospensione='S' ";
+			WHERE a.uid_da = ? AND a.uid_a=? and a.sospensione='N' ";
 
 		$stmt = $pdo -> prepare($sql);
 
