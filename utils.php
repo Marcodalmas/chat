@@ -203,7 +203,7 @@
 
 		$stmt -> execute([$uid_da,$uid_a]);
 
-		return $stmt;
+		return $stmt->fetch();
 	}
 
 	function is_blocked($uid_da,$uid_a,$pdo){
@@ -215,7 +215,7 @@
 
 		$stmt -> execute([$uid_da,$uid_a]);
 
-		return $stmt;
+		return $stmt->fetch();
 	}
 
 ?>
