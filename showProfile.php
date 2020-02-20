@@ -108,7 +108,7 @@
 	            </div>";
 	        if (friend($id,$idA,$pdo)) {
 	        	//se è friend bottone togli amicizia
-	        	echo "<button type='submit' class='btn btn-danger fa fa-user-times' onclick='addFriend($id,$idA,$pdo)'> </button>";
+	        	echo "<button type='submit' id='add' class='btn btn-danger fa fa-user-times' onclick='addFriend($id,$idA,$pdo)'> </button>";
 	        }
 	        else{
 	        	//se non è friend pulsante dai amicizia
@@ -139,5 +139,9 @@
 </body>
 </html>
 <script type="text/javascript">
+
+	document.getElementById("add").onclick = function () {
+        location.href = "action.php?action=add";
+    };
 
 </script>
