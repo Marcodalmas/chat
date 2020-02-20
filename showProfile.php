@@ -121,7 +121,7 @@
 	        }
 	        else{
 	        	//se non è bloccato pulsante per il block
-	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='addBlocked($pdo, $idA, $id)'> </button>";
+	        	//echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='addBlocked($pdo, $idA, $id)'> </button>";
 	        }
 	        ?>
 	    
