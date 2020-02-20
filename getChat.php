@@ -11,26 +11,8 @@
 			  ORDER BY m.e_quando DESC
 			  LIMIT 50 ';
 
-	$stmt = $pdo->prepare($query);
-	$stmt->execute([$uid_da,$uid_a,$uid_a,$uid_da]);
-
-	$info = 'SELECT * FROM utenti WHERE uid = ?';
-
-	$stmt2 = $pdo->prepare($info);
-	$stmt2->execute([$uid_a]);
-
-	echo '<div class="header row"style="padding: 6%">';
-
-	$info_user = $stmt2->fetch();
-
-	if($info_user['foto']==0)
-		echo '<img src=\"foto/0.png\" class=\"rounded-circle p-2 m-2\" width=\"80\" height=\"80\">';
-	else
-		echo '<img src=\"foto/$uid_da.png\" class=\"rounded-circle p-2 m-2\" width=\"80\" height=\"80\">';
-	echo '<div class=\"col\">
-            <h2>'.$info_user['nickname'].'</h2>
-            <div>'.$info_user['frasetta'].'</div>
-	      </div></div>';
+	$stmt = $pdo -> prepare($query);
+	$stmt -> execute([$uid_da,$uid_a,$uid_a,$uid_da]);
 
 	echo "<input type='hidden' id='idA' value='$uid_a'>";
 	foreach ($stmt as $mex) {
@@ -50,5 +32,3 @@
 			echo"</div>";
 		}
 	}
-
-?>

@@ -218,7 +218,6 @@
 
 	</style>
 
-
 	<title>chat</title>
 </head>
 <body>
@@ -228,21 +227,20 @@
 			<input type="text" id="search" placeHolder="Search" class="btn btn-light " style="padding-left: 5%">
 			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button></div>
 			<div role="form" style="padding-top: 10%">  
-         		<div class="chat-popup" id="myForm"></div> 
-    		</div> 
-    		<div id="lista_amici" style="padding-top: 30px"></div>	
+       	<div class="chat-popup" id="myForm"></div> 
+    	</div> 
+    	<div id="lista_amici" style="padding-top: 30px"></div>	
 	</div>
 
+<!------------->
 
 	<div class="split right">
-	    <div id="interfaccia" style="padding: 6%">
-	    	
-	    </div>
-	    <div class='foot'>
-        	<input type='text' id='messaggio' placeholder='Inserire messaggio'>
-        	<button onclick="sendMessage();"><i class='fa fa-send'></i></button>
-        </div>
-
+		<div class="header row" id="info_contatto">		</div>
+		<div id="interfaccia" style="padding: 6% ">		</div>
+		<div class='foot'>
+				<input type='text' id='messaggio' placeholder='Inserire messaggio'>
+				<button onclick="sendMessage();"><i class='fa fa-send'></i></button>
+		</div>
 	</div>
 
 </body>
@@ -300,6 +298,7 @@
 			var chatAtt;
 
 			function view(idA){
+
 				//cambio chat
 				if(idA !=idLast){
 					clearInterval(chatAtt);
@@ -308,21 +307,28 @@
 					chatAtt = setInterval(function(){
 								view(idLast);
 							  }, 2000);
-				}
-
-
-                if(idLast != ""){
-                	$.ajax({
-						url: "getChat.php",
+					
+					$.ajax({
+						url: "info_contatto.php",
 						method: "post",
 						data: {'idA': idLast},
 						success: function(data){
-							$('#interfaccia').html(data);
+							$('#info_contatto').html(data);
 						}
 					});
-                }
+					
+				}
 
-                
+        if(idLast != ""){
+            $.ajax({
+							url: "getChat.php",
+							method: "post",
+							data: {'idA': idLast},
+							success: function(data){
+								$('#interfaccia').html(data);
+							}
+						});
+        }   
 			}
 
 

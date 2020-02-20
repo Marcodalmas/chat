@@ -26,28 +26,25 @@
 
 		if (if_online($row['uid_a'],$pdo)) {
 			
-			$stato='<i class="fa fa-user" style="background-color:green"></i>';
+			$stato='<i style="background-color:green"></i>';
 
 		}
 		else{
 
-			$stato='<i class="fa fa-user" style="background-color:red"></i>';
+			$stato='<i style="background-color:red"></i>';
 
 		}
+
+		echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>";
 
 		if($row['foto'] == 1){
-			echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>
-									<img src='foto/$id.png' class='img'>"
-									;
-									echo "$stato";
-									echo "$row[nickname]</button><br>";
+			echo "<img src='foto/$id.png' class='img rounded-circle'>";
 		}
 		else{
-			echo "<button type='button' class='btn btn-primary friends start_chat'  onclick='view($row[uid_a])'>
-							<img src='foto/0.png' class='img'>";
-							echo "$stato";
-							echo "$row[nickname]</button><br>";
+			echo "<img src='foto/0.png' class='img rounded-circle'>";
 		}
+		echo "&nbsp;".$stato;
+		echo "$row[nickname]</button><br>";
 	}
 	echo "</div>";
 
