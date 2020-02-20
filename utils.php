@@ -203,7 +203,17 @@
 
 		$stmt -> execute([$uid_da,$uid_a]);
 
-		return $stmt->fetch();
+		$ris=0;
+		foreach ($stmt as $row) {
+			$ris = $row[1];
+		}
+
+		if($ris==1){
+			return $ris;
+		}
+		else{
+			return 0;
+		}
 	}
 
 	function is_blocked($uid_da,$uid_a,$pdo){
@@ -215,21 +225,19 @@
 
 		$stmt -> execute([$uid_da,$uid_a]);
 
-		return $stmt->fetch();
+		$ris=0;
+		foreach ($stmt as $row) {
+			$ris = $row[1];
+		}
+
+		if($ris==1){
+			return $ris;
+		}
+		else{
+			return 0;
+		}
 	}
 
-	function addFriend($id,$idA,$pdo){
-		$sql="INSERT INTO amicizie (uid_da,uid_a,sospensione)
-				VALUES (?,?,'N') ";
 
-		$stmt = $pdo->prepare($sql);
-
-		$stmt->execute([$id,$idA]);
-
-		$nick=nick_from_id($id,$pdo);
-
-		header("location showProfile.php?utente=$nick");
-
-	}
 
 ?>
