@@ -141,6 +141,6 @@
 <script type="text/javascript">
 
 	function add() {
-	window.location = "action.php/action=add";
-
+	window.location = "action.php&action=add";
+}
 </script>
