@@ -209,13 +209,27 @@
 	function is_blocked($uid_da,$uid_a,$pdo){
 		$sql="SELECT 1
 			FROM amicizie AS a
-			WHERE a.uid_da = ? AND a.uid_a=? and a.sospensione='N' ";
+			WHERE a.uid_da = ? AND a.uid_a=? and a.sospensione='S' ";
 
 		$stmt = $pdo -> prepare($sql);
 
 		$stmt -> execute([$uid_da,$uid_a]);
 
 		return $stmt->fetch();
+	}
+
+	function addFriend($id,$idA,$pdo){
+		$sql="INSERT INTO amicizie (uid_da,uid_a,sospensione)
+				VALUES (?,?,'N') ";
+
+		$stmt = $pdo->prepare($sql);
+
+		$stmt->execute([$id,$idA]);
+
+		$nick=nick_from_id($id,$pdo);
+
+		header("location showProfile.php?utente=$nick");
+
 	}
 
 ?>

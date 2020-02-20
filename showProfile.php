@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style type="text/css">
+		
 		.footer {
 	  		position: fixed;
 	   		padding: 5px 10px;
@@ -107,20 +108,20 @@
 	            </div>";
 	        if (friend($id,$idA,$pdo)) {
 	        	//se è friend bottone togli amicizia
-	        	echo "<button type='submit' class='btn btn-danger fa fa-user-times '> </button>";
+	        	echo "<button type='submit' class='btn btn-danger fa fa-user-times' onclick='addFriend($id,$idA,$pdo)'> </button>";
 	        }
 	        else{
 	        	//se non è friend pulsante dai amicizia
-	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus '> </button>";
+	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus' onclick='remFriend($idA)'> </button>";
 	        }
 
 	        if (is_blocked($id,$idA,$pdo)) {
 	        	//se è bloccato pulsante sbloccato
-	        	echo "<button type='submit' class='btn btn-success fa fa-unlock '> </button>";
+	        	echo "<button type='submit' class='btn btn-success fa fa-unlock'onclick='removeBlocked($pdo, $idA, $id)'> </button>";
 	        }
 	        else{
 	        	//se non è bloccato pulsante per il block
-	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt '> </button>";
+	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='addBlocked($pdo, $idA, $id)'> </button>";
 	        }
 	        ?>
 	    
@@ -135,11 +136,8 @@
 				</form>
 			</div>
 		</div>
-
-
-
-
-	
-
 </body>
 </html>
+<script type="text/javascript">
+
+</script>

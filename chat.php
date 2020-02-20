@@ -235,10 +235,7 @@
 
 
 	<div class="split right">
-		<div class="header">
-			<h1>info contatto</h1>
-		</div>
-	    <div id="interfaccia" style="padding: 6% ">
+	    <div id="interfaccia" style="padding: 6%">
 	    	
 	    </div>
 	    <div class='foot'>
@@ -303,7 +300,6 @@
 			var chatAtt;
 
 			function view(idA){
-
 				//cambio chat
 				if(idA !=idLast){
 					clearInterval(chatAtt);
@@ -317,13 +313,13 @@
 
                 if(idLast != ""){
                 	$.ajax({
-					url: "getChat.php",
-					method: "post",
-					data: {'idA': idLast},
-					success: function(data){
-						$('#interfaccia').html(data);
-					}
-				});
+						url: "getChat.php",
+						method: "post",
+						data: {'idA': idLast},
+						success: function(data){
+							$('#interfaccia').html(data);
+						}
+					});
                 }
 
                 

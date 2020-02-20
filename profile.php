@@ -15,12 +15,13 @@
 	}
 
 	if (isset($_REQUEST['cambio'])) {
-		$foto1="<input type='file' style='margin-left:40%;' name='foto' accept='image/png'><br><br>
-				<table>
+		$foto1="<input type='file' style='margin-left:10%;' name='foto' accept='image/png'><br><br>
+				<table style='margin-left:35%;'>
 					<tr>
-						<td style='width:1.5%;'><button type='submit' name='elimina' style='width:80%;' class='btn btn-danger'>Elimina foto</button></td>
-						<td style='width:5%;'><button type='submit' name='salva' style='width:37.5%;' class='btn btn-success'>OK</button></td>
-					</tr>";
+						<td style='width:50%;'><button type='submit' name='elimina' style='' class='btn btn-danger'>Elimina foto</button></td>
+						<td style='width:50%;'><button type='submit' name='salva' style='width:100%;' class='btn btn-success'>OK</button></td>
+					</tr>
+					</table>";
 	}
 
 	if (isset($_REQUEST['salva'])){
@@ -65,110 +66,165 @@
 		.footer {
 	  		position: fixed;
 	   		padding: 5px 10px;
-	   		left: 1%;
+	   		left: 0%;
 	   		bottom: 0;
 	  		width: 100%;
 	   		background-color: black;
 	   		color: white;
 	   		text-align: center;
 		}
-
-		.header {
-		 	position: fixed;
-		    width: 100%;		  	
-		  	background-color: black;
-		}
-		body{
-			position: absolute;
-			width: 10%;
-			background-color: black;
-			color: white;
-			text-align: center;
-			overflow-x: hidden;
+		html {
+		  height: 100%;
+		  width: 100%;
 		}
 
-		table {
-			position: relative;
-			margin-left: 37.5%;
-			width: 30%;
-		  	border: 1px solid black;
-		  	background-color: black;
-		}	
+		body {
+		  text-align: center;
+		  color: white;
+		  display: table;
+		  height: 100%;
+		  margin: 0;
+		  padding: 0;
+		  width: 100%;
+		}
+	
+		/*dividi schermo*/
 
-		td {
-			position: relative;
-			width: 20%;
-			text-align: left;		
+		/* divisione pagina */
+		.split {
+		  height: 50%;
+		  width: 50%;
+		  position: fixed;
+		  z-index: 1;
+		  top: 0;
+		  overflow-x: hidden;
+		  padding-top: 20px;
+		  direction: ltr;
 		}
 
-		input {
-			width: 60%;
+		/* divisione sx */
+		.left {
+		width: 50%;
+		  left: 0;
+		  background-color: black;
+		}
+
+		/* divisione dx */
+		.right {
+		  width: 50%;
+		  right: 0;
+		  background-color: black;
+		}
+
+		.row {
+		  display: table-row;
+		  height: 50%;
+		}
+
+		.row:nth-child(1) {
+		  background-color: black;
+		}
+
+		.row:nth-child(2) {
+		  background-color: orange;
+		}
+		.row:nth-child(3) {
+		  background-color: black;
+		}
+
+		/* barra di scroll */
+		div.scrollmenu {
+		  background-color: black;
+		  overflow: auto;
+		  white-space: nowrap;
+		   overflow-x: : hidden;
+		  
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 3%;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #777;
+		}
+
+		/* larghezza della barra */
+		div.scrollmenu::-webkit-scrollbar {
+		  width: 1em;
+		}
+		 
+		div.scrollmenu::-webkit-scrollbar-track {
+		  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 		}
 		
-
-		tr, td{
-				
+		/* colore e dimensione */
+		div.scrollmenu::-webkit-scrollbar-thumb {
+		  background-color: darkgrey;
+		  outline: 5px solid orange;
 
 		}
-
-		.chat-popup {
-	  		display: none;
-		  	position: fixed;
-		 	bottom: 500;
-		  	right: 15px;
-		  	border: 3px solid #f1f1f1;
-		 	z-index: 9;
-		}
-
 	</style>
 
 	<title>profile</title>
 </head>
 <body class="">
-	<div class="header">
-		<h1>IL MIO PROFILO</h1>
-       	<form action="" method="GET">
-       		<?php 
-       		echo "<img src=\"$foto\" class=\"rounded-circle p-2 m-2\" width=\"100\" height=\"100\"><br>";
-       		echo $foto1;
-       		?>
-       		<br>
-       	</form>
-       	<form>	
-	       	<table class="">
-					<tr>
-						<td>Status:<br><input type="text" id='nuovoStatus' name="status" value="<?php echo $frasetta;?>"></td>
-					</tr>
-	       			<tr>	
-						<td>Nickname:<br><input type="text" id='nuovaNick' name="nick" value="<?php echo $nick;?>"></td>
-					</tr>
-					<tr>	
-						<td>Password:<br><input type="password"  name="oldpwd" placeholder="Vecchia password"></td>
-					</tr>
-					<tr>	
-						<td><input type="password" name="newpwd" placeholder="Nuova password"></td>
-					</tr>
-					<tr>	
-						<td><input type="password"  name="confpwd" placeholder="Conferma password"></td>
-					</tr>
-	       			<tr>
-	       				<td><button type="submit" style="width: 60%; margin-top: 1.5%; text-align: middle;"  name="change" class="btn btn-success">Modifica</button></td>
-	       			</tr>
-				</table>
-       	</form>
-			
+
+	<div class="row">
+		<div class="split left">
+	       	<form action="" method="GET">
+	       		<h1>IL MIO PROFILO</h1>
+	       		<?php 
+	       		echo "<img src=\"$foto\" class=\"rounded-circle p-2 m-2\" width=\"100\" height=\"100\"><br>";
+	       		echo $foto1;
+	       		?>
+	       		<br>
+	       	</form>
+	    </div>
+	    <div class="split right">
+	       	<form>	
+		       	<table style="margin-left: 40%;">
+						<tr>
+							<td>Status:<br><input type="text" id='nuovoStatus' name="status" value="<?php echo $frasetta;?>"></td>
+						</tr>
+		       			<tr>	
+							<td>Nickname:<br><input type="text" id='nuovaNick' name="nick" value="<?php echo $nick;?>"></td>
+						</tr>
+						<tr>	
+							<td>Password:<br><input type="password"  name="oldpwd" placeholder="Vecchia password"></td>
+						</tr>
+						<tr>	
+							<td><input type="password" name="newpwd" placeholder="Nuova password"></td>
+						</tr>
+						<tr>	
+							<td><input type="password"  name="confpwd" placeholder="Conferma password"></td>
+						</tr>
+		       			<tr>
+		       				<td><button type="submit" style="width: 60%; margin-top: 1.5%; text-align: middle;"  name="change" class="btn btn-success">Modifica</button></td>
+		       			</tr>
+					</table>
+	       	</form>
+				
+		</div>
 	</div>
-	<br>
-	<div class="footer">
-		<form action="home.php" class="container">
-			<button style="width: 75%" type="submit" name="back" class="btn btn-danger"><i style="" class="fa fa-arrow-left"></i></button>
-		</form>
+	<div class="row">
+		<h1></h1>
 	</div>
 
-	<script type="text/javascript">
-		
-	</script>
+	<div class="row">
+		<div class="footer">
+			<form action="home.php" class="container">
+				<button style="width: 75%" type="submit" name="back" class="btn btn-danger"><i style="" class="fa fa-arrow-left"></i></button>
+			</form>
+		</div>
+	</div>
+
 	
+
 
 </body>
 </html>
