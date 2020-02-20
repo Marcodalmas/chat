@@ -100,7 +100,7 @@
 	
     <div class="row">
 		<?php 
-	        echo "<img src=\"$idA\" class=\"rounded-circle p-2 m-2\" width=\"200\" height=\"200\">";
+	        echo "<img src=\"$idA\".png class=\"rounded-circle p-2 m-2\" width=\"200\" height=\"200\">";
 	        
 	        echo "<div class=\"col\">
 	                <h2>$nickA</h2>
