@@ -13,7 +13,7 @@
 
     foreach($stmt as $user){
 
-        echo "<a href=showProfile.php?utente=$user[nickname] style="border">$user[nickname]</a><br>";
+        echo "<a href=showProfile.php?utente=$user[nickname]>$user[nickname]</a><br>";
     }
 ?>
 
