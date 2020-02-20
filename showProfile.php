@@ -108,20 +108,22 @@
 	            </div>";
 	        if (friend($id,$idA,$pdo)) {
 	        	//se è friend bottone togli amicizia
-	        	echo "<button type='submit' id='add' class='btn btn-danger fa fa-user-times' onclick='add()'> </button>";
+	        	echo "<button type='submit' id='add' class='btn btn-danger fa fa-user-times' onclick='rem()'> </button>";
+	        	
 	        }
 	        else{
 	        	//se non è friend pulsante dai amicizia
-	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus' onclick='remFriend($idA)'> </button>";
+	        	
+	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus' onclick='add()'> </button>";
 	        }
 
 	        if (is_blocked($id,$idA,$pdo)) {
 	        	//se è bloccato pulsante sbloccato
-	        	echo "<button type='submit' class='btn btn-success fa fa-unlock'onclick='removeBlocked($pdo, $idA, $id)'> </button>";
+	        	echo "<button type='submit' class='btn btn-success fa fa-unlock'onclick='rblock'> </button>";
 	        }
 	        else{
 	        	//se non è bloccato pulsante per il block
-	        	//echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='addBlocked($pdo, $idA, $id)'> </button>";
+	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='block'> </button>";
 	        }
 	        ?>
 	    
@@ -142,5 +144,21 @@
 
 	function add() {
 	window.location.href = "action.php&action=add";
-}
+	}
+
+	function rem() {
+	window.location.href = "action.php&action=rem";
+	}
+
+	function block() {
+	window.location.href = "action.php&action=block";
+	}
+
+	function rblock() {
+	window.location.href = "action.php&action=rblock";
+	}
+
+
+
+
 </script>
