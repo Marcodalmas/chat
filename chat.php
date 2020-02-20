@@ -235,7 +235,7 @@
 <!------------->
 
 	<div class="split right">
-		<div class="header row" id="info_contatto">		</div>
+		<div class="header" id="info_contatto">		</div>
 		<div id="interfaccia" style="padding: 6% ">		</div>
 		<div class='foot'>
 				<input type='text' id='messaggio' placeholder='Inserire messaggio'>

@@ -15,7 +15,7 @@
         echo "<img src='foto/0.png' class='rounded-circle p-2' width='80' height='80'>";
     else    
         echo "<img src='foto/$user[uid].png'>";
-    echo "<div class='col'><h1>$user[nickname]</h1>";
+        echo "<div class='col'><h1>$user[nickname]</h1>";
 
     $act = if_online($uid_a, $pdo);
     
