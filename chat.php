@@ -204,15 +204,14 @@
 		}
 
 		.footer {
-	   position: fixed;
-	   padding: 5px 10px;
-	   left: 1%;
-	   bottom: 0;
-	   width: 101%;
-	   background-color: black;
-	   color: white;
-	   text-align: center;
-	   padding-left: 40%;
+		   position: fixed;
+		   padding: 5px 10px;
+		   left: 1%;
+		   bottom: 0;
+		   width: 30%;
+		   background-color: black;
+		   color: white;
+		   text-align: center;
 		}
 
 
@@ -227,6 +226,11 @@
 			<input type="text" id="search" placeHolder="Search" class="btn btn-light " style="padding-left: 5%">
 			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button></div>
 			<div role="form" style="padding-top: 10%">  
+				<div class="footer">
+				<form action="home.php" class="container">
+					<button style="width: 75%" type="submit" name="back" class="btn btn-danger"><i style="" class="fa fa-arrow-left"></i></button>
+				</form>
+			</div>
        	<div class="chat-popup" id="myForm"></div> 
     	</div> 
     	<div id="lista_amici" style="padding-top: 30px"></div>	
@@ -235,7 +239,7 @@
 <!------------->
 
 	<div class="split right">
-		<div class="header" id="info_contatto">		</div>
+		<div class="header " id="info_contatto">		</div>
 		<div id="interfaccia" style="padding: 6% ">		</div>
 		<div class='foot'>
 				<input type='text' id='messaggio' placeholder='Inserire messaggio'>
