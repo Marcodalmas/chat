@@ -144,22 +144,18 @@
 <script type="text/javascript">
 
 	function add(idA) {
-	window.location.href = "action.php?action=add&id=idA";
+	window.location.href = "action.php?action=add&id="+idA;
 	}
 
 	function rem(idA) {
-	window.location.href = "action.php?action=rem&id=idA";
+	window.location.href = "action.php?action=rem&id="+idA;
 	}
 
 	function block(idA) {
-	window.location.href = "action.php?action=block&id=idA";
+	window.location.href = "action.php?action=block&id="+idA;
 	}
 
 	function rblock(idA) {
-	window.location.href = "action.php?action=rblock&id=idA";
+	window.location.href = "action.php?action=rblock&id="+idA;
 	}
-
-
-
-
 </script>

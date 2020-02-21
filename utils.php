@@ -9,6 +9,8 @@
 		$stmt = $pdo -> prepare($sql);
 
 		$stmt -> execute([$nick]);
+
+		$id=0;
 		
 		foreach ($stmt as $row) {
 			$id = $row['uid'];
@@ -29,7 +31,7 @@
 
 		$stmt = $pdo -> prepare($sql);
 
-		$stmt -> execute([$nick]);
+		$stmt -> execute([$id]);
 		
 		foreach ($stmt as $row) {
 			$nick = $row['nickname'];
@@ -127,6 +129,17 @@
 		$stmt->execute([$uid,$id]);
 	}
 
+		function addBlocked($pdo, $uid, $id){
+
+		$query = "UPDATE amicizie
+				  SET sospensione = 'S'
+				  WHERE uid_da = ? AND uid_a = ?";
+
+		$stmt = $pdo->prepare($query);
+
+		$stmt->execute([$uid,$id]);
+	}
+
 	function change_nick_status($pdo, $id, $newNick, $newFras){
 		
 		$query = "UPDATE utenti as u
@@ -187,6 +200,8 @@
 		$stmt = $pdo -> prepare($sql);
 
 		$stmt -> execute([$id]);
+
+		$frasetta='';
 		
 		foreach ($stmt as $row) {
 			$frasetta = $row['frasetta'];
