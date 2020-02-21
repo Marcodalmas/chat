@@ -14,6 +14,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="gestoreTime.js" type="text/javascript"></script>
 		<style type="text/css">
 		
 		.footer {
@@ -96,7 +97,7 @@
 	</style>
 	<title></title>
 </head>
-<body>
+<body onload="updateTime()" onmousemove="updateTime()">
 	
     <div class="row">
 		<?php 
@@ -108,22 +109,22 @@
 	            </div>";
 	        if (friend($id,$idA,$pdo)) {
 	        	//se è friend bottone togli amicizia
-	        	echo "<button type='submit' id='add' class='btn btn-danger fa fa-user-times' onclick='rem()'> </button>";
+	        	echo "<button type='submit' id='add' class='btn btn-danger fa fa-user-times' onclick='rem($idA)'> </button>";
 	        	
 	        }
 	        else{
 	        	//se non è friend pulsante dai amicizia
 	        	
-	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus' onclick='add()'> </button>";
+	        	echo "<button type='submit' class='btn btn-success fa fa-user-plus' onclick='add($idA)'> </button>";
 	        }
 
 	        if (is_blocked($id,$idA,$pdo)) {
 	        	//se è bloccato pulsante sbloccato
-	        	echo "<button type='submit' class='btn btn-success fa fa-unlock'onclick='rblock'> </button>";
+	        	echo "<button type='submit' class='btn btn-success fa fa-unlock'onclick='rblock($idA)'> </button>";
 	        }
 	        else{
-	        	//se non è bloccato pulsante per il block
-	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='block'> </button>";
+	        	//se non è bloccato pulsante per il blocks
+	        	echo "<button type='submit' class='btn btn-danger fa fa-unlock-alt'onclick='block($idA)'> </button>";
 	        }
 	        ?>
 	    
@@ -142,20 +143,20 @@
 </html>
 <script type="text/javascript">
 
-	function add() {
-	window.location.href = "action.php&action=add";
+	function add(idA) {
+	window.location.href = "action.php?action=add&id=idA";
 	}
 
-	function rem() {
-	window.location.href = "action.php&action=rem";
+	function rem(idA) {
+	window.location.href = "action.php?action=rem&id=idA";
 	}
 
-	function block() {
-	window.location.href = "action.php&action=block";
+	function block(idA) {
+	window.location.href = "action.php?action=block&id=idA";
 	}
 
-	function rblock() {
-	window.location.href = "action.php&action=rblock";
+	function rblock(idA) {
+	window.location.href = "action.php?action=rblock&id=idA";
 	}
 
 

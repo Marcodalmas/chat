@@ -30,6 +30,8 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="gestoreTime.js" type="text/javascript"></script>
 	<script src="Script/jquery.min.js" type="text/javascript"></script>
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -219,7 +221,7 @@
 
 	<title>chat</title>
 </head>
-<body>
+<body onload="updateTime()" onmousemove="updateTime()">
 
 	<div class="split left scrollmenu">
 		<div class="header">
@@ -239,7 +241,7 @@
 <!------------->
 
 	<div class="split right">
-		<div class="header " id="info_contatto">		</div>
+		<div class="header " id="info_contatto"></div>
 		<div id="interfaccia" style="padding: 6% ">		</div>
 		<div class='foot'>
 				<input type='text' id='messaggio' placeholder='Inserire messaggio'>

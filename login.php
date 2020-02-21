@@ -55,6 +55,12 @@
 		}
 	}
 
+	if(isset($_REQUEST['sess'])) {
+		if($_REQUEST['sess']=='scaduta') {
+			echo '<script>window.alert("SESSIONE SCADUTA!");</script>';
+		}
+	}
+
  ?>
 <!DOCTYPE html>
 <html>

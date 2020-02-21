@@ -14,6 +14,10 @@
 
     session_destroy();
 
-    header('Location: login.php');
+    if(isset($_GET['sess']) && $_GET['sess']=='scaduta')
+        $sess = 'scaduta';
+    else    
+        $sess = '';
+    header('Location: login.php?sess='.$sess);
 
     exit();

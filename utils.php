@@ -226,6 +226,7 @@
 		$stmt -> execute([$uid_da,$uid_a]);
 
 		$ris=0;
+		
 		foreach ($stmt as $row) {
 			$ris = $row[1];
 		}
