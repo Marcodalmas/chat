@@ -10,12 +10,12 @@
 	$stmt -> execute([$uid_a]);
 
     $user = $stmt->fetch();
-
+    echo '<div class="row">';
     if($user['foto']==0)
         echo "<img src='foto/0.png' class='rounded-circle p-2' width='80' height='80'>";
     else    
-        echo "<img src='foto/$user[uid].png'>";
-        echo "<div class='col'>$user[nickname]";
+        echo "<img src='foto/$user[uid].png' class='rounded-circle p-2' width='80' height='80'>";
+        echo "<div class='col'><h1>$user[nickname]</h1>";
 
     $act = if_online($uid_a, $pdo);
     
@@ -23,4 +23,4 @@
         echo '<i>Offline</i>';
     else
         echo '<i>Online</i>';
-    echo '</div>';
+    echo '</div></div>';

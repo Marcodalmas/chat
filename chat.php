@@ -22,8 +22,6 @@
 			}
 		}
 
-	
-
  ?>
 <!DOCTYPE html>
 <html>
@@ -84,14 +82,14 @@
 
 		/* header fisso in alto */
 		.header {
+		  
 		  position: fixed;
 		  width: 101%;
 		  top: 0px;
-		  padding: 10px 16px;
+		  padding: 10px;
 		  background: black;
 		  color: #f1f1f1;
 		  overflow-x: hidden;
-		  height: 15%;
 
 		}
 
@@ -99,7 +97,7 @@
 		.foot{
 		  position: fixed;
 		  width: 101%;
-		  bottom: 1px;
+		  bottom: 0px;
 		  padding: 10px 16px;
 		  background: black;
 		  color: #f1f1f1;
@@ -157,53 +155,50 @@
 		}
 
 		/* Chat containers */
-		.containerC {
+		.containerM {
 		  border: 2px solid #dedede;
-		  background-color: #f1f1f1;
-		  border-radius: 5px;
+		  background-color: rgb(255,128,0);
+		  border-radius: 15px 0px 15px 15px;
 		  padding: 10px;
 		  margin: 10px 0;
+		  width: 49%;
+		  position: relative;
+		  left: 49%;
 		}
 
-		/* Darker chat container */
-		.darker {
-		  border-color: #ccc;
-		  background-color: #ddd;
+		.containerD {
+		  border: 2px solid rgb(255,128,0);
+		  background-color: #f1f1f1;
+		  border-radius: 0px 15px 15px 15px;
+		  padding: 10px;
+		  margin: 10px 0;
+		  width: 49%;
 		}
 
 		/* Clear floats */
-		.containerC::after {
+		.containerM::after {
 		  content: "";
 		  clear: both;
 		  display: table;
 		}
 
-		/* Style images */
-		.containerC img {
-		  float: left;
-		  max-width: 60px;
-		  width: 100%;
-		  margin-right: 20px;
-		  border-radius: 50%;
-		}
-
-		/* Style the right image */
-		.container img.right {
-		  float: right;
-		  margin-left: 20px;
-		  margin-right:0;
+		/* Clear floats */
+		.containerD::after {
+		  content: "";
+		  clear: both;
+		  display: table;
 		}
 
 		/* Style time text */
 		.time-right {
 		  float: right;
-		  color: #aaa;
+		  color: black;
 		}
 
 		/* Style time text */
 		.time-left {
 		  float: left;
-		  color: #999;
+		  color: black;
 		}
 
 		.footer {
@@ -217,6 +212,19 @@
 		   text-align: center;
 		}
 
+		#messaggio {
+			border: 2px solid black;
+			background-color: #f1f1f1;
+			border-radius: 10px;
+			padding: 8px;
+			margin: 0px 10px 0px 10px
+		}
+
+		#interfaccia {
+			position: relative;
+			padding: 6%;
+		}
+
 
 	</style>
 
@@ -225,7 +233,7 @@
 <body onload="updateTime()" onmousemove="updateTime()">
 
 	<div class="split left scrollmenu">
-		<div class="header">
+		<div class="row fixed">
 			<input type="text" id="search" placeHolder="Search" class="btn btn-light " style="padding-left: 5%">
 			<button id="searchBtn" onclick="search()" class="btn btn-light"><i class="fa fa-search"></i></button></div>
 			<div role="form" style="padding-top: 10%">  
@@ -242,11 +250,13 @@
 <!------------->
 
 	<div class="split right">
-		<div class="header " id="info_contatto"></div>
-		<div id="interfaccia" style="padding: 6% ">		</div>
-		<div class='foot'>
-				<input type='text' id='messaggio' placeholder='Inserire messaggio'>
-				<button onclick="sendMessage();"><i class='fa fa-send'></i></button>
+		<div class="header" id="info_contatto">		</div>
+		<div id="interfaccia">		</div>
+		<div class="foot">
+			<div class="row">
+				<input type="text" id="messaggio" placeholder="Inserire messaggio" width="45%">
+				<button class="btn btn-link" onclick="sendMessage();"><i class="fa fa-send"></i></button>
+			</div>
 		</div>
 	</div>
 
@@ -303,6 +313,7 @@
 
 			var idLast = 0;
 			var chatAtt;
+			var maxY = window.innerHeight;
 
 			function view(idA){
 
@@ -323,34 +334,36 @@
 							$('#info_contatto').html(data);
 						}
 					});
-					
+					window.scrollTo(0, window.innerHeight);
 				}
 
-        if(idLast != ""){
-            $.ajax({
-							url: "getChat.php",
-							method: "post",
-							data: {'idA': idLast},
-							success: function(data){
-								$('#interfaccia').html(data);
-							}
-						});
-        }   
+				if(idLast != ""){
+					$.ajax({
+									url: "getChat.php",
+									method: "post",
+									data: {'idA': idLast},
+									success: function(data){
+										$('#interfaccia').html(data);
+									}
+								});
+				}   
 			}
 
 
 			function sendMessage(){
 				var idA = document.getElementById('idA').value;
 				var text = document.getElementById('messaggio').value;
-				$.ajax({
-					url: "sendMex.php",
-					method: "post",
-					data: {'idA': idA, 'testo': text},
-					success: function(data){
-			
-					}
-				});
-				document.getElementById('messaggio').value = "";
+				if(text != "" && idA != ""){
+					$.ajax({
+						url: "sendMex.php",
+						method: "post",
+						data: {'idA': idA, 'testo': text},
+						success: function(data){
+				
+						}
+					});
+					document.getElementById('messaggio').value = "";
+				}
 			}
 
 			$(document).ready(function(){

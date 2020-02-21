@@ -103,41 +103,39 @@
 
 	function user_blocked($pdo, $id){
 
-			$stmt = $pdo -> prepare("SELECT a.uid_a,(SELECT nickname
+			$stmt = $pdo -> prepare("SELECT b.uid_a,(SELECT nickname
 													FROM utenti
-													WHERE uid = a.uid_a) AS nickname,
+													WHERE uid = b.uid_a) AS nickname,
 												(SELECT foto
 												FROM utenti
-												WHERE uid = a.uid_a) AS foto
+												WHERE uid = b.uid_a) AS foto
 									FROM utenti AS u
-									JOIN amicizie AS a
-									ON u.uid = a.uid_da
-									WHERE u.uid=?
-									AND a.sospensione = 'S'");
+									JOIN Blocked AS b
+									ON u.uid = b.uid_da
+									WHERE u.uid=?");
 			$stmt -> execute([$id]);
 			return $stmt;
 	}
 
-	function removeBlocked($pdo, $uid, $id){
+	function removeBlocked($pdo, $idDa, $idA){
 
-		$query = "UPDATE amicizie
-				  SET sospensione = 'N'
-				  WHERE uid_da = ? AND uid_a = ?";
+		$sql="DELETE from blocked
+			  where uid_da = ? and uid_a = ?";
 
-		$stmt = $pdo->prepare($query);
+		$stmt = $pdo->prepare($sql);
 
-		$stmt->execute([$uid,$id]);
+		$stmt->execute([$idDa,$idA]);
+
+
 	}
 
-		function addBlocked($pdo, $uid, $id){
+	function addBlocked($pdo, $idDa, $idA){
+		$sql="INSERT INTO blocked (uid_da,uid_a)
+			  VALUES (?,?) ";
 
-		$query = "UPDATE amicizie
-				  SET sospensione = 'S'
-				  WHERE uid_da = ? AND uid_a = ?";
+		$stmt = $pdo->prepare($sql);
 
-		$stmt = $pdo->prepare($query);
-
-		$stmt->execute([$uid,$id]);
+		$stmt->execute([$idDa,$idA]);
 	}
 
 	function change_nick_status($pdo, $id, $newNick, $newFras){
@@ -155,9 +153,7 @@
 	function if_online($uid, $pdo){
 		 $query = "
 			 SELECT * 
-			 SELECT *
 			 FROM activity 
-			 WHERE uid = $uid
 			 WHERE uid = ?
 			 ORDER BY last_a DESC 
 			 LIMIT 1
@@ -233,8 +229,8 @@
 
 	function is_blocked($uid_da,$uid_a,$pdo){
 		$sql="SELECT 1
-			FROM amicizie AS a
-			WHERE a.uid_da = ? AND a.uid_a=? and a.sospensione='S' ";
+			FROM Blocked as b
+			WHERE b.uid_da = ? AND b.uid_a=?";
 
 		$stmt = $pdo -> prepare($sql);
 

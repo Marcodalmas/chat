@@ -42,7 +42,7 @@
 
 		$stmt->execute([$idDa,$idA]);
 
-		print_r($stmt->fetchAll());
+		
 
 		if ($stmt > 0) {
 			header("Location: showProfile.php?utente=$nick&action=11");
