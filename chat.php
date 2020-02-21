@@ -91,6 +91,7 @@
 		  background: black;
 		  color: #f1f1f1;
 		  overflow-x: hidden;
+		  height: 15%;
 
 		}
 
