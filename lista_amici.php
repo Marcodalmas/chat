@@ -23,7 +23,7 @@
 
 	$stmt = $pdo->prepare($sql);
 
-	$stmt->execute([$id,$id]);
+	$stmt->execute([$id,$id,$id]);
 
 	
 	echo"<div class='btn-group-vertical' style='width: 99%'>";
