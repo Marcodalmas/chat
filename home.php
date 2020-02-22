@@ -167,62 +167,67 @@
         </div>
     </div>
     <!-- POST -->
-	
-    <div class="col overflow-auto justify-content-center p-3 container-post scrollmenu">
+	<div class="scrollmenu">
+	    <div class="col overflow-auto justify-content-center p-3 container-post">
 
-        <?php
-            $query = "SELECT *
-                      FROM post as p 
-                      WHERE p.uid IN (SELECT a.uid_a
-                                      FROM amicizie AS a
-                                      JOIN utenti AS u ON a.uid_a = u.uid
-                                      WHERE a.uid_da = $id)";
+	        <?php
+	            $query = "SELECT *
+	                      FROM post as p 
+	                      WHERE p.uid IN (SELECT a.uid_a
+	                                      FROM amicizie AS a
+	                                      JOIN utenti AS u ON a.uid_a = u.uid
+	                                      WHERE a.uid_da = $id)";
 
-            $stmt = $pdo->query($query);
-            
-            foreach($stmt as $post){
-				echo "<div class='post row centered d-flex justify-content-center'>";
-				echo "<div class='col'>";
-				//nickname dell'utente
-                $query2 = "SELECT uid, nickname, foto FROM utenti WHERE uid = $post[uid]";
-                $stmt2 = $pdo->query($query2);
-                $friend = $stmt2->fetch();
+	            $stmt = $pdo->query($query);
+	            
+	            foreach($stmt as $post){
+					echo "<div class='post row centered d-flex justify-content-center'>";
+					echo "<div class='col'>";
+					//nickname dell'utente
+	                $query2 = "SELECT uid, nickname, foto FROM utenti WHERE uid = $post[uid]";
+	                $stmt2 = $pdo->query($query2);
+	                $friend = $stmt2->fetch();
 
-				if($friend['foto']==1)
-					$foto_friend = "$friend[uid].png";
-				else
-					$foto_friend = "0.png";
+					if($friend['foto']==1)
+						$foto_friend = "$friend[uid].png";
+					else
+						$foto_friend = "0.png";
 
-				echo "<div class='row'><img src='foto/$foto_friend' class='p-2 m-2 rounded-circle' width='60' height='60'>
-					  <b>$friend[nickname]</b>
-					  <br></div>";
-                    
-                if($post['foto'])
-					echo "<div class='row'><img src='post/$post[pid].png' class='p-2 m-2' width='200' height='200'>
+					echo "<div class='row'><img src='foto/$foto_friend' class='p-2 m-2 rounded-circle' width='60' height='60'>
+						  <b>$friend[nickname]</b>
+						  <br></div>";
+	                    
+	                if($post['foto'])
+						echo "<div class='row'><img src='post/$post[pid].png' class='p-2 m-2' width='200' height='200'>
+							  <br></div>";
+
+	                if($post['commento'] != NULL)
+						echo $post['commento']."<br>";
+						
+					if($post['likes'] == NULL)
+						$likes = 0;
+					else	
+						$likes = $post['likes'];
+					
+					echo "<br><div class='row' id='$post[pid]'>
+							<div class='col-5'><i>$likes likes</i></div>
+						  <button class='btn btn-danger d-flex justify-content-end' onclick='like($post[pid])'><i class='fa fa-heart'></i></button>
 						  <br></div>";
 
-                if($post['commento'] != NULL)
-					echo $post['commento']."<br>";
-					
-				if($post['likes'] == NULL)
-					$likes = 0;
-				else	
-					$likes = $post['likes'];
-				
-				echo "<br><div class='row' id='$post[pid]'>
-						<div class='col-5'><i>$likes likes</i></div>
-					  <button class='btn btn-danger d-flex justify-content-end' onclick='like($post[pid])'><i class='fa fa-heart'></i></button>
-					  <br></div>";
 
 
 
+					echo "</div></div>";
+	            }
+	        ?>
+	        
+	    </div>
+	</div>
 
-				echo "</div></div>";
-            }
-        ?>
-        
-    </div>
+
     <!--sotto-->
+
+    
     <form>
         <div class="footer row">
             <div class="col-4">
