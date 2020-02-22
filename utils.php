@@ -24,6 +24,16 @@
 		}
 	}
 
+	function change_password($pdo, $id, $oldpwd, $newpwd){
+		$query = "UPDATE utenti as u
+				  SET u.password_hash = ?
+				  WHERE u.uid = ? AND u.password_hash = ?";
+
+		$stmt = $pdo -> prepare($query);
+
+		$stmt -> execute([$newpwd,$id,$oldpwd]);
+	}
+
 	function nick_from_id($id, $pdo){
 		$sql=" SELECT u.nickname
 				FROM utenti AS u

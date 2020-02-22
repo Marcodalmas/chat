@@ -47,15 +47,13 @@
 		}
 
 		.header {
-		    position: fixed;
-		    width: 95%;
+		  position: absolute;
+		  width: 95%;
 		  padding: 20px;
 		  margin: 20px;
 		  background-color: black;
 		}
 		body{
-			position: fixed;
-			
 			width: 40%;
 			background-color: #111;
 			color: white;
@@ -81,6 +79,7 @@
 		}
 
 		.container-post {
+			position: relative;
 			top: 200px;
 			width: 65%;
 			left: 20%;
@@ -227,7 +226,7 @@
 
     <!--sotto-->
 
-    
+
     <form>
         <div class="footer row">
             <div class="col-4">
