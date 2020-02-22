@@ -1,6 +1,6 @@
 <?php
 
-$options = [PDO::ATTR_EMULATE_PREPARES => FALSE
+$options = [//PDO::ATTR_EMULATE_PREPARES => FALSE
 ];
 
 try {

@@ -10,11 +10,11 @@
 					FROM messaggi AS m
 					WHERE (m.e_uid = ? AND m.r_uid = ?) OR (m.e_uid = ? AND m.r_uid = ?)
 					ORDER BY m.e_quando DESC
-					LIMIT ?) AS t
+					LIMIT 50) AS t
 			  ORDER BY t.e_quando';
 
 	$stmt = $pdo -> prepare($query);
-	$stmt -> execute([$uid_da,$uid_a,$uid_a,$uid_da,50]);
+	$stmt -> execute([$uid_da,$uid_a,$uid_a,$uid_da]);
 	echo '<div class="row"><div class="col">';
 	echo "<input type='hidden' id='idA' value='$uid_a'>";
 	foreach ($stmt as $mex) :
