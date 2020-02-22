@@ -104,7 +104,7 @@
                 <div>$frasetta</div>
             </div>";
         ?>
-        <div role="form">    d-flex          
+        <div role="form">            
             <br><br>
             <form action="logout.php" class="justify-content-end flex-row-reverse">
                 <button class="btn btn-danger  justify-content-end">LOGOUT</button>
