@@ -48,6 +48,11 @@
 		
 		change_nick_status($pdo, $id, $_REQUEST['nick'], $_REQUEST['status']);
 		
+			if($_REQUEST['newpwd'] === $_REQUEST['confpwd'])
+				change_password($pdo, $id, $_REQUEST['oldpwd'], $_REQUEST['confpwd']);
+			else
+				alert('Errore inserimento password');
+
 		$_SESSION['frasetta']= $_REQUEST['status'];
 		$_SESSION['nick'] = $_REQUEST['nick'];
 		header("Location: home.php");
@@ -173,7 +178,7 @@
 
 	<title>profile</title>
 </head>
-<body onload="updateTime()" onmousemove="updateTime()">
+<body onload="updateTime()" onload="samepwd()" onmousemove="updateTime()">
 
 	<div class="row">
 		<div class="split left">
@@ -199,10 +204,10 @@
 							<td>Password:<br><input type="password"  name="oldpwd" placeholder="Vecchia password"></td>
 						</tr>
 						<tr>	
-							<td><input type="password" name="newpwd" placeholder="Nuova password"></td>
+							<td><input type="password" id="pwd" name="newpwd" placeholder="Nuova password"></td>
 						</tr>
 						<tr>	
-							<td><input type="password"  name="confpwd" placeholder="Conferma password"></td>
+							<td><input type="password" id="rpwd"  name="confpwd" placeholder="Conferma password"></td>
 						</tr>
 		       			<tr>
 		       				<td><button type="submit" style="width: 60%; margin-top: 1.5%; text-align: middle;"  name="change" class="btn btn-success">Modifica</button></td>
@@ -225,6 +230,25 @@
 	</div>
 
 	
+
+
+	<script type="text/javascript">
+		function samepwd(){
+			return document.getElementById('pwd').value === document.getElementById('rpwd').value
+		}
+		function colore(){
+			if(document.getElementById('rpwd').value != ""){
+				if (samepwd()== true)
+					document.getElementById('rpwd').style="border:2px solid green";
+				else
+					document.getElementById('rpwd').style="border:2px solid red";
+			}
+			else
+				document.getElementById('rpwd').style="";
+		}
+		setInterval('colore()',100);
+
+	</script>
 
 
 </body>
