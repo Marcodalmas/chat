@@ -24,8 +24,7 @@
 
 	$stmt->execute([$id,$id]);
 
-	print_r($stmt->fetchAll());
-
+	
 	echo"<div class='btn-group-vertical' style='width: 99%'>";
 
 	foreach ($stmt as $row) {
