@@ -244,7 +244,7 @@
 			</div>
        	<div class="chat-popup" id="myForm"></div> 
     	</div> 
-    	<div id="lista_amici" style="padding-top: 30px overflow-x: hidden;"></div>	
+    	<div id="lista_amici" style="padding-top: 30px"></div>	
 	</div>
 
 <!------------->
