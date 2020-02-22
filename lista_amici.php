@@ -14,12 +14,12 @@
 																  WHERE uid = a.uid_a) AS foto
 			FROM amicizie AS a
 			JOIN utenti AS u ON u.uid = a.uid_da
-			WHERE u.uid = 1 AND (u.uid NOT IN(SELECT b.uid_a
+			WHERE u.uid = ? AND (u.uid NOT IN(SELECT b.uid_a
 														FROM blocked AS b
-														WHERE b.uid_da = 1)
+														WHERE b.uid_da = ?)
 								OR   u.uid NOT IN(SELECT b.uid_da
 														FROM blocked AS b
-														WHERE b.uid_a = 1))";
+														WHERE b.uid_a = ?))";
 
 	$stmt = $pdo->prepare($sql);
 
