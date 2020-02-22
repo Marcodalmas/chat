@@ -85,6 +85,43 @@
 			width: 65%;
 			left: 20%;
 		}
+		/* barra di scroll */
+		div.scrollmenu {
+		  background-color: black;
+		  overflow: auto;
+		  white-space: nowrap;
+		   overflow-x: : hidden;
+		  
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 3%;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #777;
+		}
+
+		/* larghezza della barra */
+		div.scrollmenu::-webkit-scrollbar {
+		  width: 1em;
+		}
+		 
+		div.scrollmenu::-webkit-scrollbar-track {
+		  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+		
+		/* colore e dimensione */
+		div.scrollmenu::-webkit-scrollbar-thumb {
+		  background-color: darkgrey;
+		  outline: 5px solid orange;
+
+		}
+		/* fine barra di scroll */
 	
 
 	</style>
@@ -131,7 +168,7 @@
     </div>
     <!-- POST -->
 	
-    <div class="col overflow-auto justify-content-center p-3 container-post">
+    <div class="col overflow-auto justify-content-center p-3 container-post scrollmenu">
 
         <?php
             $query = "SELECT *
