@@ -4,6 +4,7 @@
 	include_once 'utils.php';
 	session_start();
 
+
 	$logdid = $_SESSION['logdid'];
 	$id=$_SESSION['id'];
 	$nick=$_SESSION['nick'];
@@ -20,6 +21,7 @@
 								OR   u.uid NOT IN(SELECT b.uid_da
 														FROM blocked AS b
 														WHERE b.uid_a = ?))";
+
 
 	$stmt = $pdo->prepare($sql);
 
