@@ -12,18 +12,20 @@
 					WHERE uid = a.uid_a) AS nickname, (SELECT foto
 																  FROM utenti 
 																  WHERE uid = a.uid_a) AS foto
-			FROM utenti AS u
-			JOIN amicizie AS a ON u.uid = a.uid_da
+			FROM amicizie AS a
+			JOIN utenti AS u ON u.uid = a.uid_da
 			WHERE u.uid = ?
 			AND a.uid_a <> (SELECT b.uid_a
-				 FROM utenti as ut
-				 JOIN blocked as b
-				 ON ut.uid = b.uid_da 
+				 FROM blocked AS b
+				 WHERE b.uid_da = ?
 				 )";
 
 	$stmt = $pdo->prepare($sql);
 
-	$stmt->execute([$id]);
+	$stmt->execute([$id,$id]);
+
+	print_r($stmt->fetchAll());
+
 	echo"<div class='btn-group-vertical' style='width: 99%'>";
 
 	foreach ($stmt as $row) {
